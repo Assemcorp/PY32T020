@@ -1,10 +1,15 @@
 PY32FT020 Firmware Project
+
 This repository contains a sample project developed for the Puya PY32FT020 microcontroller. It demonstrates basic peripheral usage and can serve as a starting point for your own applications.
 
 📁 Project Structure
+
 main.c – Main application logic
+
 app_config.h – Peripheral configuration header (enable/disable modules)
+
 Keil/ – Project files for Keil uVision 5
+
 Drivers/ – PY32 HAL drivers and headers
 
 🔧 Development Environment
@@ -14,9 +19,13 @@ Debugger: J-Link
 Target MCU: PY32FT020
 
 🚀 Features
-GPIO 
-UART 
+
+GPIO
+
+UART
+
 TOUCH
+
 PWM(BUZZER)
 
 ▶️ Getting Started
