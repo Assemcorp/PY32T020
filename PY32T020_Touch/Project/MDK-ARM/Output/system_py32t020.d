@@ -1,0 +1,9 @@
+.\output\system_py32t020.o: ..\Src\system_py32t020.c
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t0xx.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t020x6.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Include\core_cm0plus.h
+.\output\system_py32t020.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
+.\output\system_py32t020.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\system_py32t0xx.h

@@ -1,0 +1,10 @@
+.\output\py32t020_flash.o: ..\..\app_drivers\src\py32t020_flash.c
+.\output\py32t020_flash.o: ..\..\app_drivers\inc\py32t020_flash.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t0xx.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t020x6.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Include\core_cm0plus.h
+.\output\py32t020_flash.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
+.\output\py32t020_flash.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\system_py32t0xx.h

@@ -1,0 +1,1291 @@
+Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
+
+==============================================================================
+
+Section Cross References
+
+    startup_py32t020xx.o(RESET) refers to startup_py32t020xx.o(STACK) for __initial_sp
+    startup_py32t020xx.o(RESET) refers to startup_py32t020xx.o(.text) for Reset_Handler
+    startup_py32t020xx.o(RESET) refers to main.o(i.SysTick_Handler) for SysTick_Handler
+    startup_py32t020xx.o(RESET) refers to gpio.o(i.EXTI0_1_IRQHandler) for EXTI0_1_IRQHandler
+    startup_py32t020xx.o(RESET) refers to gpio.o(i.EXTI2_3_IRQHandler) for EXTI2_3_IRQHandler
+    startup_py32t020xx.o(RESET) refers to gpio.o(i.EXTI4_15_IRQHandler) for EXTI4_15_IRQHandler
+    startup_py32t020xx.o(RESET) refers to tk_user.o(i.TK_IRQHandler) for TK_IRQHandler
+    startup_py32t020xx.o(.text) refers to system_py32t020.o(i.SystemInit) for SystemInit
+    startup_py32t020xx.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_py32t020.o(i.SystemCoreClockUpdate) refers to uidiv.o(.text) for __aeabi_uidivmod
+    system_py32t020.o(i.SystemCoreClockUpdate) refers to system_py32t020.o(.data) for SystemCoreClock
+    system_py32t020.o(i.SystemCoreClockUpdate) refers to system_py32t020.o(.constdata) for HSIFreqTable
+    system_py32t020.o(i.SystemInit) refers to system_py32t020.o(i.DelayTime) for DelayTime
+    main.o(i.SysTick_Handler) refers to drivers.o(i.app_drivers_timer) for app_drivers_timer
+    main.o(i.SysTick_Handler) refers to tk_lib.o(i.TK_TimerHandler) for TK_TimerHandler
+    main.o(i.SysTick_Handler) refers to main.o(.data) for Prescaler
+    main.o(i.SystemClockConfig) refers to system_py32t020.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    main.o(i.SystemClockConfig) refers to main.o(i.LL_IOP_GRP1_EnableClock) for LL_IOP_GRP1_EnableClock
+    main.o(i.SystemClockConfig) refers to uidiv.o(.text) for __aeabi_uidivmod
+    main.o(i.SystemClockConfig) refers to main.o(i.__NVIC_SetPriority) for __NVIC_SetPriority
+    main.o(i.SystemClockConfig) refers to system_py32t020.o(.data) for SystemCoreClock
+    main.o(i.TK_Loop) refers to tk_lib.o(i.TK_MainFsm) for TK_MainFsm
+    main.o(i.TK_Loop) refers to smg_task.o(i.LED_Show) for LED_Show
+    main.o(i.TK_Loop) refers to beep_drivers.o(i.BEEP_On) for BEEP_On
+    main.o(i.TK_Loop) refers to smg_task.o(i.SMG_Show) for SMG_Show
+    main.o(i.TK_Loop) refers to tk_lib.o(.bss) for TKCtr
+    main.o(i.TK_Loop) refers to main.o(.data) for KeyFlag
+    main.o(i.main) refers to main.o(i.SystemClockConfig) for SystemClockConfig
+    main.o(i.main) refers to drivers.o(i.app_drivers_init) for app_drivers_init
+    main.o(i.main) refers to tk_lib.o(i.TK_Init) for TK_Init
+    main.o(i.main) refers to main.o(i.TK_Loop) for TK_Loop
+    main.o(i.main) refers to drivers.o(i.app_drivers_loop) for app_drivers_loop
+    drivers.o(i.EXTI0_15_IRQHandlerCallback) refers to drivers.o(.data) for EXTI_Flag
+    drivers.o(i.app_drivers_init) refers to smg_drivers.o(i.SMG_Init) for SMG_Init
+    drivers.o(i.app_drivers_init) refers to beep_drivers.o(i.BEEP_Init) for BEEP_Init
+    drivers.o(i.app_drivers_loop) refers to drivers.o(.data) for EXTI_Flag
+    drivers.o(i.app_drivers_timer) refers to smg_drivers.o(i.SMG_Scan) for SMG_Scan
+    drivers.o(i.app_drivers_timer) refers to beep_drivers.o(i.BEEP_Timeout) for BEEP_Timeout
+    drivers.o(i.delay_ms) refers to drivers.o(i.delay_us) for delay_us
+    smg_task.o(i.LED_Show) refers to smg_task.o(.constdata) for TK_LED
+    smg_task.o(i.LED_Show) refers to smg_drivers.o(.data) for smg_data
+    smg_task.o(i.SMG_Default) refers to smg_drivers.o(.data) for smg_data
+    smg_task.o(i.SMG_Show) refers to idiv.o(.text) for __aeabi_idivmod
+    smg_task.o(i.SMG_Show) refers to smg_task.o(.constdata) for num_tbl
+    smg_task.o(i.SMG_Show) refers to smg_drivers.o(.data) for smg_data
+    gpio.o(i.EXTI0_1_IRQHandler) refers to drivers.o(i.EXTI0_15_IRQHandlerCallback) for EXTI0_15_IRQHandlerCallback
+    gpio.o(i.EXTI2_3_IRQHandler) refers to drivers.o(i.EXTI0_15_IRQHandlerCallback) for EXTI0_15_IRQHandlerCallback
+    gpio.o(i.EXTI4_15_IRQHandler) refers to drivers.o(i.EXTI0_15_IRQHandlerCallback) for EXTI0_15_IRQHandlerCallback
+    gpio.o(i.GPIO_ClearBit) refers to gpio.o(.constdata) for T020_IO
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_EXTI_DisableFallingTrig) for LL_EXTI_DisableFallingTrig
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_EXTI_DisableRisingTrig) for LL_EXTI_DisableRisingTrig
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_GPIO_SetPinPull) for LL_GPIO_SetPinPull
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_GPIO_SetPinOutputType) for LL_GPIO_SetPinOutputType
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_GPIO_SetPinMode) for LL_GPIO_SetPinMode
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_EXTI_EnableRisingTrig) for LL_EXTI_EnableRisingTrig
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_EXTI_EnableFallingTrig) for LL_EXTI_EnableFallingTrig
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.LL_EXTI_SetEXTISource) for LL_EXTI_SetEXTISource
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.__NVIC_SetPriority) for __NVIC_SetPriority
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    gpio.o(i.GPIO_Init) refers to gpio.o(i.__ARM_common_switch8) for __ARM_common_switch8
+    gpio.o(i.GPIO_Init) refers to gpio.o(.constdata) for T020_IO
+    gpio.o(i.GPIO_Init) refers to gpio.o(.data) for exti_bit
+    gpio.o(i.GPIO_ReadBit) refers to gpio.o(.constdata) for T020_IO
+    gpio.o(i.GPIO_SetBit) refers to gpio.o(.constdata) for T020_IO
+    gpio.o(i.GPIO_ToggleBit) refers to gpio.o(.constdata) for T020_IO
+    smg_drivers.o(i.SMG_Init) refers to gpio.o(i.GPIO_Init) for GPIO_Init
+    smg_drivers.o(i.SMG_Init) refers to gpio.o(i.GPIO_ClearBit) for GPIO_ClearBit
+    smg_drivers.o(i.SMG_Init) refers to gpio.o(i.GPIO_SetBit) for GPIO_SetBit
+    smg_drivers.o(i.SMG_Init) refers to smg_task.o(i.SMG_Default) for SMG_Default
+    smg_drivers.o(i.SMG_Init) refers to smg_drivers.o(.data) for smg_com
+    smg_drivers.o(i.SMG_Init) refers to smg_drivers.o(.constdata) for SEG_PIN
+    smg_drivers.o(i.SMG_Scan) refers to gpio.o(i.GPIO_SetBit) for GPIO_SetBit
+    smg_drivers.o(i.SMG_Scan) refers to gpio.o(i.GPIO_ClearBit) for GPIO_ClearBit
+    smg_drivers.o(i.SMG_Scan) refers to smg_drivers.o(.data) for smg_run
+    smg_drivers.o(i.SMG_Scan) refers to smg_drivers.o(.constdata) for COM_PIN
+    smg_drivers.o(i.SMG_Sleep) refers to gpio.o(i.GPIO_SetBit) for GPIO_SetBit
+    smg_drivers.o(i.SMG_Sleep) refers to gpio.o(i.GPIO_ClearBit) for GPIO_ClearBit
+    smg_drivers.o(i.SMG_Sleep) refers to smg_drivers.o(.data) for smg_run
+    smg_drivers.o(i.SMG_Sleep) refers to smg_drivers.o(.constdata) for COM_PIN
+    smg_drivers.o(i.SMG_Wake) refers to smg_drivers.o(.data) for smg_run
+    beep_drivers.o(i.BEEP_Init) refers to gpio.o(i.GPIO_Init) for GPIO_Init
+    beep_drivers.o(i.BEEP_Init) refers to gpio.o(i.GPIO_ClearBit) for GPIO_ClearBit
+    beep_drivers.o(i.BEEP_On) refers to gpio.o(i.GPIO_SetBit) for GPIO_SetBit
+    beep_drivers.o(i.BEEP_On) refers to beep_drivers.o(.data) for beep_delay
+    beep_drivers.o(i.BEEP_Timeout) refers to gpio.o(i.GPIO_ClearBit) for GPIO_ClearBit
+    beep_drivers.o(i.BEEP_Timeout) refers to beep_drivers.o(.data) for beep_delay
+    py32t020_flash.o(i.Erase_UserData) refers to py32t020_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    py32t020_flash.o(i.Erase_UserData) refers to py32t020_flash.o(.constdata) for _TimmingParam
+    py32t020_flash.o(i.FLASH_OBProgram) refers to py32t020_flash.o(i.FLASH_OB_GetRDP) for FLASH_OB_GetRDP
+    py32t020_flash.o(i.FLASH_OBProgram) refers to py32t020_flash.o(i.FLASH_OB_OptrConfig) for FLASH_OB_OptrConfig
+    py32t020_flash.o(i.FLASH_OBProgram) refers to py32t020_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    py32t020_flash.o(i.FLASH_OBProgram) refers to py32t020_flash.o(.constdata) for _TimmingParam
+    py32t020_flash.o(i.Program_UserData) refers to py32t020_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    py32t020_flash.o(i.Program_UserData) refers to py32t020_flash.o(.constdata) for _TimmingParam
+    py32t020_ll_adc.o(i.LL_ADC_DeInit) refers to py32t020_ll_adc.o(i.LL_ADC_IsEnabled) for LL_ADC_IsEnabled
+    py32t020_ll_adc.o(i.LL_ADC_DeInit) refers to py32t020_ll_adc.o(i.LL_ADC_REG_IsStopConversionOngoing) for LL_ADC_REG_IsStopConversionOngoing
+    py32t020_ll_adc.o(i.LL_ADC_Init) refers to py32t020_ll_adc.o(i.LL_ADC_IsEnabled) for LL_ADC_IsEnabled
+    py32t020_ll_adc.o(i.LL_ADC_REG_Init) refers to py32t020_ll_adc.o(i.LL_ADC_IsEnabled) for LL_ADC_IsEnabled
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_DisableEvent) for LL_EXTI_DisableEvent
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_EnableIT) for LL_EXTI_EnableIT
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_DisableIT) for LL_EXTI_DisableIT
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_EnableEvent) for LL_EXTI_EnableEvent
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_EnableRisingTrig) for LL_EXTI_EnableRisingTrig
+    py32t020_ll_exti.o(i.LL_EXTI_Init) refers to py32t020_ll_exti.o(i.LL_EXTI_EnableFallingTrig) for LL_EXTI_EnableFallingTrig
+    py32t020_ll_gpio.o(i.LL_GPIO_DeInit) refers to py32t020_ll_gpio.o(i.LL_IOP_GRP1_ForceReset) for LL_IOP_GRP1_ForceReset
+    py32t020_ll_gpio.o(i.LL_GPIO_DeInit) refers to py32t020_ll_gpio.o(i.LL_IOP_GRP1_ReleaseReset) for LL_IOP_GRP1_ReleaseReset
+    py32t020_ll_i2c.o(i.LL_I2C_ConfigDataHoldTime) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_i2c.o(i.LL_I2C_ConfigSpeed) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_i2c.o(i.LL_I2C_Init) refers to py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq) for LL_RCC_GetSystemClocksFreq
+    py32t020_ll_i2c.o(i.LL_I2C_Init) refers to py32t020_ll_i2c.o(i.LL_I2C_ConfigSpeed) for LL_I2C_ConfigSpeed
+    py32t020_ll_i2c.o(i.LL_I2C_Init) refers to py32t020_ll_i2c.o(i.LL_I2C_ConfigDataHoldTime) for LL_I2C_ConfigDataHoldTime
+    py32t020_ll_rcc.o(i.LL_RCC_DeInit) refers to py32t020_ll_rcc.o(i.LL_RCC_GetSysClkSource) for LL_RCC_GetSysClkSource
+    py32t020_ll_rcc.o(i.LL_RCC_DeInit) refers to py32t020_ll_rcc.o(i.LL_RCC_HSE_IsReady) for LL_RCC_HSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockSource) for LL_RCC_GetCOMPClockSource
+    py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_GetLSCClockFreq) for LL_RCC_GetLSCClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) for RCC_GetSystemClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetHCLKClockFreq) for RCC_GetHCLKClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetPCLK1ClockFreq) for RCC_GetPCLK1ClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetIWDGClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSE_IsReady) for LL_RCC_LSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetIWDGClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSI_IsReady) for LL_RCC_LSI_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetLSCClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSE_IsReady) for LL_RCC_LSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetLSCClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSI_IsReady) for LL_RCC_LSI_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to gpio.o(i.__ARM_common_switch8) for __ARM_common_switch8
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_HSE_IsReady) for LL_RCC_HSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSI_IsReady) for LL_RCC_LSI_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSE_IsReady) for LL_RCC_LSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) for RCC_GetSystemClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetHCLKClockFreq) for RCC_GetHCLKClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to py32t020_ll_rcc.o(i.RCC_GetPCLK1ClockFreq) for RCC_GetPCLK1ClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to system_py32t020.o(.data) for SystemCoreClock
+    py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq) refers to system_py32t020.o(.constdata) for HSIFreqTable
+    py32t020_ll_rcc.o(i.LL_RCC_GetRTCClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSE_IsReady) for LL_RCC_LSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetRTCClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_LSI_IsReady) for LL_RCC_LSI_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetRTCClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_HSE_IsReady) for LL_RCC_HSE_IsReady
+    py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq) refers to py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) for RCC_GetSystemClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq) refers to py32t020_ll_rcc.o(i.RCC_GetHCLKClockFreq) for RCC_GetHCLKClockFreq
+    py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq) refers to py32t020_ll_rcc.o(i.RCC_GetPCLK1ClockFreq) for RCC_GetPCLK1ClockFreq
+    py32t020_ll_rcc.o(i.RCC_GetHCLKClockFreq) refers to system_py32t020.o(.constdata) for AHBPrescTable
+    py32t020_ll_rcc.o(i.RCC_GetPCLK1ClockFreq) refers to system_py32t020.o(.constdata) for APBPrescTable
+    py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) refers to py32t020_ll_rcc.o(i.LL_RCC_GetSysClkSource) for LL_RCC_GetSysClkSource
+    py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq) refers to system_py32t020.o(.constdata) for HSIFreqTable
+    py32t020_ll_tim.o(i.LL_TIM_DeInit) refers to py32t020_ll_tim.o(i.LL_APB1_GRP2_ForceReset) for LL_APB1_GRP2_ForceReset
+    py32t020_ll_tim.o(i.LL_TIM_DeInit) refers to py32t020_ll_tim.o(i.LL_APB1_GRP2_ReleaseReset) for LL_APB1_GRP2_ReleaseReset
+    py32t020_ll_tim.o(i.LL_TIM_HALLSENSOR_Init) refers to py32t020_ll_tim.o(i.LL_TIM_OC_SetCompareCH2) for LL_TIM_OC_SetCompareCH2
+    py32t020_ll_tim.o(i.LL_TIM_IC_Init) refers to py32t020_ll_tim.o(i.IC1Config) for IC1Config
+    py32t020_ll_tim.o(i.LL_TIM_IC_Init) refers to py32t020_ll_tim.o(i.IC2Config) for IC2Config
+    py32t020_ll_tim.o(i.LL_TIM_IC_Init) refers to py32t020_ll_tim.o(i.IC3Config) for IC3Config
+    py32t020_ll_tim.o(i.LL_TIM_IC_Init) refers to py32t020_ll_tim.o(i.IC4Config) for IC4Config
+    py32t020_ll_tim.o(i.LL_TIM_OC_Init) refers to py32t020_ll_tim.o(i.OC1Config) for OC1Config
+    py32t020_ll_tim.o(i.LL_TIM_OC_Init) refers to py32t020_ll_tim.o(i.OC2Config) for OC2Config
+    py32t020_ll_tim.o(i.LL_TIM_OC_Init) refers to py32t020_ll_tim.o(i.OC3Config) for OC3Config
+    py32t020_ll_tim.o(i.LL_TIM_OC_Init) refers to py32t020_ll_tim.o(i.OC4Config) for OC4Config
+    py32t020_ll_tim.o(i.OC2Config) refers to py32t020_ll_tim.o(i.LL_TIM_OC_SetCompareCH2) for LL_TIM_OC_SetCompareCH2
+    py32t020_ll_uart.o(i.LL_UART_DeInit) refers to py32t020_ll_uart.o(i.LL_APB1_GRP1_ForceReset) for LL_APB1_GRP1_ForceReset
+    py32t020_ll_uart.o(i.LL_UART_DeInit) refers to py32t020_ll_uart.o(i.LL_APB1_GRP1_ReleaseReset) for LL_APB1_GRP1_ReleaseReset
+    py32t020_ll_uart.o(i.LL_UART_Init) refers to py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq) for LL_RCC_GetSystemClocksFreq
+    py32t020_ll_uart.o(i.LL_UART_Init) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_utils.o(i.LL_Init1msTick) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_ll_utils.o(i.LL_SetSystemCoreClock) refers to system_py32t020.o(.data) for SystemCoreClock
+    tk_user.o(i.EnterStop_Callback) refers to smg_drivers.o(i.SMG_Sleep) for SMG_Sleep
+    tk_user.o(i.EnterStop_Callback) refers to drivers.o(.data) for EXTI_Flag
+    tk_user.o(i.ExitStop_Callback) refers to smg_drivers.o(i.SMG_Wake) for SMG_Wake
+    tk_user.o(i.ExitStop_Callback) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_user.o(i.ExitStop_Callback) refers to tk_lib.o(.bss) for TKCtr
+    tk_user.o(i.ExitStop_Callback) refers to drivers.o(.data) for EXTI_Flag
+    tk_user.o(i.TK_IRQHandler) refers to py32t020_tk.o(i.TK_LibIRQHandler) for TK_LibIRQHandler
+    tk_user.o(i.TK_RegisterCfg) refers to py32t020_tk.o(i.TK_LibInit) for TK_LibInit
+    tk_user.o(i.TK_RegisterCfg) refers to system_py32t020.o(.data) for SystemCoreClock
+    tk_user.o(i.TK_RegisterCfg) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_user.o(i.TK_RegisterCfg) refers to tk_lib.o(.bss) for TKCtr
+    tk_user.o(i.TK_UserParaInit) refers to tk_lib.o(i.TK_GetVersion) for TK_GetVersion
+    tk_user.o(i.TK_UserParaInit) refers to tk_lib.o(.bss) for TKCtr
+    tk_user.o(i.TK_UserParaInit) refers to tk_lib.o(.ARM.__AT_0x20000000) for TK_Info
+    tk_user.o(i.TK_UserParaInit) refers to tk_lib.o(.data) for FilterCtr
+    tk_user.o(i.TK_UserParaInit) refers to tk_user.o(i.EnterStop_Callback) for EnterStop_Callback
+    tk_user.o(i.TK_UserParaInit) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_user.o(i.TK_UserParaInit) refers to tk_user.o(i.ExitStop_Callback) for ExitStop_Callback
+    tk_user.o(i.TK_UserParaInit) refers to tk_user.o(i.APP_TouchKeyFlagsMask) for APP_TouchKeyFlagsMask
+    tk_user.o(i.TK_UserParaInit) refers to tk_user.o(.bss) for TK_Mem
+    tk_user.o(i.TK_UserParaInit) refers to tk_user.o(.constdata) for KEY_CH_TAB
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to idiv.o(.text) for __aeabi_idivmod
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to py32t020_tk.o(i.TK_SetLfsrw) for TK_SetLfsrw
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to py32t020_tk.o(i.TK_CsdIdacTrimChs) for TK_CsdIdacTrimChs
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to py32t020_tk.o(i.TK_CsdIdacTrimLp) for TK_CsdIdacTrimLp
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_CsdIdacTrim) refers to py32t020_tk.o(.data) for .data
+    py32t020_tk.o(i.TK_CsdIdacTrimChs) refers to py32t020_tk.o(i.TK_SetSenseStart) for TK_SetSenseStart
+    py32t020_tk.o(i.TK_CsdIdacTrimChs) refers to py32t020_tk.o(i.gotosleep) for gotosleep
+    py32t020_tk.o(i.TK_CsdIdacTrimChs) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_CsdIdacTrimLp) refers to uidiv.o(.text) for __aeabi_uidivmod
+    py32t020_tk.o(i.TK_CsdIdacTrimLp) refers to py32t020_tk.o(i.TK_LPSenseStart) for TK_LPSenseStart
+    py32t020_tk.o(i.TK_CsdIdacTrimLp) refers to py32t020_tk.o(i.gotosleep) for gotosleep
+    py32t020_tk.o(i.TK_CsdIdacTrimLp) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_LPSenseStart) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_LibDeInit) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_LibIRQHandler) refers to tk_lib.o(i.TK_IRQHandlerCallback) for TK_IRQHandlerCallback
+    py32t020_tk.o(i.TK_LibIRQHandler) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(i.TK_CsdIdacTrim) for TK_CsdIdacTrim
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(.data) for .data
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_LibInit) refers to py32t020_tk.o(.constdata) for .constdata
+    py32t020_tk.o(i.TK_LpDeInit) refers to py32t020_tk.o(i.__RTC_DeInit) for __RTC_DeInit
+    py32t020_tk.o(i.TK_LpDeInit) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_LpDeInit) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_LpInit) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_LpInit) refers to py32t020_tk.o(i.Timer_RTC_Init) for Timer_RTC_Init
+    py32t020_tk.o(i.TK_LpInit) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_SetLfsrw) refers to py32t020_tk.o(.data) for .data
+    py32t020_tk.o(i.TK_SetLfsrw) refers to py32t020_tk.o(.constdata) for .constdata
+    py32t020_tk.o(i.TK_SetSenseStart) refers to tk_lib.o(i.HighSensitvityChs) for HighSensitvityChs
+    py32t020_tk.o(i.TK_SetSenseStart) refers to py32t020_tk.o(i.nop_delay) for nop_delay
+    py32t020_tk.o(i.TK_SetSenseStart) refers to py32t020_tk.o(.constdata) for .constdata
+    py32t020_tk.o(i.TK_SetSenseStart) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.TK_SetSenseStart) refers to py32t020_tk.o(.data) for .data
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(i.__NVIC_DisableIRQ) for __NVIC_DisableIRQ
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(i.TK_RTC_WaitForSynchro) for TK_RTC_WaitForSynchro
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(i.TK_RTC_EnterInitMode) for TK_RTC_EnterInitMode
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(i.TK_RTC_ExitInitMode) for TK_RTC_ExitInitMode
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(.data) for .data
+    py32t020_tk.o(i.Timer_RTC_Init) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(i.__NVIC_DisableIRQ) for __NVIC_DisableIRQ
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(i.TK_RTC_WaitForSynchro) for TK_RTC_WaitForSynchro
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(i.TK_RTC_EnterInitMode) for TK_RTC_EnterInitMode
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(i.TK_RTC_ExitInitMode) for TK_RTC_ExitInitMode
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(i.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(.bss) for .bss
+    py32t020_tk.o(i.__RTC_DeInit) refers to py32t020_tk.o(.data) for .data
+    tk_lib.o(i.APP_TouchKeyDataProc) refers to tk_lib.o(i.TK_GetArea) for TK_GetArea
+    tk_lib.o(i.APP_TouchKeyDataProc) refers to tk_lib.o(i.TK_SetAreaConfirmCNT) for TK_SetAreaConfirmCNT
+    tk_lib.o(i.APP_TouchKeyDataProc) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.APP_TouchKeyDataProc) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.APP_TouchKeyDataProc) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.APP_TouchKeyDifferCalc) refers to idiv.o(.text) for __aeabi_idivmod
+    tk_lib.o(i.APP_TouchKeyDifferCalc) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.APP_TouchKeyDifferCalc) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.APP_TouchKeyFlagsGenerate) refers to tk_lib.o(i.TK_UpdatBaseLineData) for TK_UpdatBaseLineData
+    tk_lib.o(i.APP_TouchKeyFlagsGenerate) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.APP_TouchKeyFlagsGenerate) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.APP_TouchKeyFlagsGenerate) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to idiv.o(.text) for __aeabi_idivmod
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to fflti.o(.text) for __aeabi_i2f
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to ffltui.o(.text) for __aeabi_ui2f
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to fdiv.o(.text) for __aeabi_fdiv
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to fadd.o(.text) for __aeabi_fadd
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to fmul.o(.text) for __aeabi_fmul
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to ffixui.o(.text) for __aeabi_f2uiz
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to tk_lib.o(i.TK_UpdatBaseLineData) for TK_UpdatBaseLineData
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.APP_TouchSliderOrWheelProc) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.DebugDataUpdate) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.DebugDataUpdate) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.Get_InsideDif) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.Get_InsideDif) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_EnterStop) refers to py32t020_tk.o(i.TK_LpInit) for TK_LpInit
+    tk_lib.o(i.TK_EnterStop) refers to py32t020_tk.o(i.TK_LpDeInit) for TK_LpDeInit
+    tk_lib.o(i.TK_EnterStop) refers to py32t020_tk.o(i.gotosleep) for gotosleep
+    tk_lib.o(i.TK_EnterStop) refers to tk_lib.o(i.TK_MultiChAcqStart) for TK_MultiChAcqStart
+    tk_lib.o(i.TK_EnterStop) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_EnterStop) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_EnterStop) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_FilterInit) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_FilterInit) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_Filtering) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.TK_Filtering) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_Filtering) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_GetArea) refers to idiv.o(.text) for __aeabi_idivmod
+    tk_lib.o(i.TK_GetArea) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_GetArea) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_IRQHandlerCallback) refers to tk_lib.o(i.TK_MultiChAcqNext) for TK_MultiChAcqNext
+    tk_lib.o(i.TK_IRQHandlerCallback) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_IRQHandlerCallback) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_IRQHandlerCallback) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_Init) refers to system_py32t020.o(i.SystemCoreClockUpdate) for SystemCoreClockUpdate
+    tk_lib.o(i.TK_Init) refers to tk_user.o(i.TK_UserParaInit) for TK_UserParaInit
+    tk_lib.o(i.TK_Init) refers to tk_user.o(i.TK_RegisterCfg) for TK_RegisterCfg
+    tk_lib.o(i.TK_Init) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_Init) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_Init) refers to system_py32t020.o(.data) for SystemCoreClock
+    tk_lib.o(i.TK_Init) refers to tk_lib.o(.constdata) for .constdata
+    tk_lib.o(i.TK_Init) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_Init) refers to py32t020_tk.o(.data) for TrimStep_Prs
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_Init) for TK_Init
+    tk_lib.o(i.TK_MainFsm) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_MultiChAcqStart) for TK_MultiChAcqStart
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_SetBaseLineAll) for TK_SetBaseLineAll
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_FilterInit) for TK_FilterInit
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.DebugDataUpdate) for DebugDataUpdate
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_WinDetection) for TK_WinDetection
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_Filtering) for TK_Filtering
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.Get_InsideDif) for Get_InsideDif
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.APP_TouchKeyDifferCalc) for APP_TouchKeyDifferCalc
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.APP_TouchKeyDataProc) for APP_TouchKeyDataProc
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.APP_TouchSliderOrWheelProc) for APP_TouchSliderOrWheelProc
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.APP_TouchKeyFlagsGenerate) for APP_TouchKeyFlagsGenerate
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(i.TK_EnterStop) for TK_EnterStop
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_MainFsm) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_MainFsm) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_MultiChAcqNext) refers to py32t020_tk.o(i.TK_SetLfsrw) for TK_SetLfsrw
+    tk_lib.o(i.TK_MultiChAcqNext) refers to py32t020_tk.o(i.TK_SetSenseStart) for TK_SetSenseStart
+    tk_lib.o(i.TK_MultiChAcqNext) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_MultiChAcqNext) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_MultiChAcqStart) refers to py32t020_tk.o(i.TK_SetLfsrw) for TK_SetLfsrw
+    tk_lib.o(i.TK_MultiChAcqStart) refers to py32t020_tk.o(i.TK_SetSenseStart) for TK_SetSenseStart
+    tk_lib.o(i.TK_MultiChAcqStart) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_MultiChAcqStart) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_SetAreaConfirmCNT) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_SetAreaConfirmCNT) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_SetBaseLineAll) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_SetBaseLineAll) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_TimerHandler) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_TimerHandler) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_UpdatBaseLineData) refers to tk_lib.o(i.TK_SetAreaConfirmCNT) for TK_SetAreaConfirmCNT
+    tk_lib.o(i.TK_UpdatBaseLineData) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_UpdatBaseLineData) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_WinDetection) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.TK_WinDetection) refers to idiv.o(.text) for __aeabi_idivmod
+    tk_lib.o(i.TK_WinDetection) refers to tk_lib.o(i.TK_UpdatBaseLineData) for TK_UpdatBaseLineData
+    tk_lib.o(i.TK_WinDetection) refers to py32t020_tk.o(i.TK_SetLfsrw) for TK_SetLfsrw
+    tk_lib.o(i.TK_WinDetection) refers to py32t020_tk.o(i.TK_CsdIdacTrimChs) for TK_CsdIdacTrimChs
+    tk_lib.o(i.TK_WinDetection) refers to py32t020_tk.o(.bss) for TK_Handle
+    tk_lib.o(i.TK_WinDetection) refers to tk_lib.o(.data) for .data
+    tk_lib.o(i.TK_WinDetection) refers to tk_lib.o(.bss) for .bss
+    tk_lib.o(i.TK_WinDetection) refers to py32t020_tk.o(.data) for TrimStep_Prs
+    tk_lib.o(i.log_putstr) refers to uidiv.o(.text) for __aeabi_uidivmod
+    tk_lib.o(i.log_putstr) refers to tk_lib.o(.data) for .data
+    tk_lib.o(.ARM.__AT_0x20000000) refers to tk_lib.o(.bss) for TkAreaInfor
+    tk_lib.o(.ARM.__AT_0x20000000) refers to tk_lib.o(.data) for TouchKeyChInfor
+    tk_lib.o(.ARM.__AT_0x20000000) refers to tk_lib.o(.constdata) for TK_LibVersion
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    idiv.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    fadd.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fadd.o(.text) refers to fepilogue.o(.text) for _float_epilogue
+    fmul.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fdiv.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fdiv.o(.text) refers to fepilogue.o(.text) for _float_round
+    fflti.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fflti.o(.text) refers to fepilogue.o(.text) for _float_epilogue
+    ffltui.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    ffltui.o(.text) refers to fepilogue.o(.text) for _float_epilogue
+    ffixui.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_py32t020xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_py32t020xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup_py32t020xx.o(HEAP), (0 bytes).
+    Removing system_py32t020.o(.rev16_text), (4 bytes).
+    Removing system_py32t020.o(.revsh_text), (4 bytes).
+    Removing main.o(.rev16_text), (4 bytes).
+    Removing main.o(.revsh_text), (4 bytes).
+    Removing main.o(.constdata), (35 bytes).
+    Removing drivers.o(.rev16_text), (4 bytes).
+    Removing drivers.o(.revsh_text), (4 bytes).
+    Removing drivers.o(i.delay_ms), (26 bytes).
+    Removing drivers.o(i.delay_us), (64 bytes).
+    Removing drivers.o(i.nop_delay_xus), (22 bytes).
+    Removing drivers.o(.constdata), (35 bytes).
+    Removing smg_task.o(.rev16_text), (4 bytes).
+    Removing smg_task.o(.revsh_text), (4 bytes).
+    Removing adc_task.o(.rev16_text), (4 bytes).
+    Removing adc_task.o(.revsh_text), (4 bytes).
+    Removing adc_task.o(.constdata), (35 bytes).
+    Removing uart_task.o(.rev16_text), (4 bytes).
+    Removing uart_task.o(.revsh_text), (4 bytes).
+    Removing uart_task.o(.constdata), (35 bytes).
+    Removing argb_task.o(.rev16_text), (4 bytes).
+    Removing argb_task.o(.revsh_text), (4 bytes).
+    Removing argb_task.o(.constdata), (35 bytes).
+    Removing gpio.o(.rev16_text), (4 bytes).
+    Removing gpio.o(.revsh_text), (4 bytes).
+    Removing gpio.o(i.EXTI0_15_IRQHandlerCallback), (2 bytes).
+    Removing gpio.o(i.GPIO_ReadBit), (52 bytes).
+    Removing gpio.o(i.GPIO_ToggleBit), (40 bytes).
+    Removing uart_drivers.o(.rev16_text), (4 bytes).
+    Removing uart_drivers.o(.revsh_text), (4 bytes).
+    Removing uart_drivers.o(.constdata), (35 bytes).
+    Removing tim1_drivers.o(.rev16_text), (4 bytes).
+    Removing tim1_drivers.o(.revsh_text), (4 bytes).
+    Removing tim1_drivers.o(.constdata), (35 bytes).
+    Removing tim14_drivers.o(.rev16_text), (4 bytes).
+    Removing tim14_drivers.o(.revsh_text), (4 bytes).
+    Removing tim14_drivers.o(.constdata), (35 bytes).
+    Removing smg_drivers.o(.rev16_text), (4 bytes).
+    Removing smg_drivers.o(.revsh_text), (4 bytes).
+    Removing beep_drivers.o(.rev16_text), (4 bytes).
+    Removing beep_drivers.o(.revsh_text), (4 bytes).
+    Removing beep_drivers.o(.constdata), (35 bytes).
+    Removing adc_drivers.o(.rev16_text), (4 bytes).
+    Removing adc_drivers.o(.revsh_text), (4 bytes).
+    Removing adc_drivers.o(.constdata), (35 bytes).
+    Removing tm1624.o(.rev16_text), (4 bytes).
+    Removing tm1624.o(.revsh_text), (4 bytes).
+    Removing tm1624.o(.constdata), (35 bytes).
+    Removing tm1640.o(.rev16_text), (4 bytes).
+    Removing tm1640.o(.revsh_text), (4 bytes).
+    Removing tm1640.o(.constdata), (35 bytes).
+    Removing ir_received.o(.rev16_text), (4 bytes).
+    Removing ir_received.o(.revsh_text), (4 bytes).
+    Removing ir_received.o(.constdata), (35 bytes).
+    Removing spi-led_drivers.o(.rev16_text), (4 bytes).
+    Removing spi-led_drivers.o(.revsh_text), (4 bytes).
+    Removing spi-led_drivers.o(.constdata), (35 bytes).
+    Removing user-otp_drivers.o(.rev16_text), (4 bytes).
+    Removing user-otp_drivers.o(.revsh_text), (4 bytes).
+    Removing user-otp_drivers.o(.constdata), (35 bytes).
+    Removing py32t020_flash.o(.rev16_text), (4 bytes).
+    Removing py32t020_flash.o(.revsh_text), (4 bytes).
+    Removing py32t020_flash.o(i.Erase_UserData), (384 bytes).
+    Removing py32t020_flash.o(i.FLASH_Lock), (20 bytes).
+    Removing py32t020_flash.o(i.FLASH_OBProgram), (436 bytes).
+    Removing py32t020_flash.o(i.FLASH_OB_GetRDP), (24 bytes).
+    Removing py32t020_flash.o(i.FLASH_OB_Launch), (20 bytes).
+    Removing py32t020_flash.o(i.FLASH_OB_Lock), (20 bytes).
+    Removing py32t020_flash.o(i.FLASH_OB_OptrConfig), (32 bytes).
+    Removing py32t020_flash.o(i.FLASH_OB_Unlock), (40 bytes).
+    Removing py32t020_flash.o(i.FLASH_Unlock), (36 bytes).
+    Removing py32t020_flash.o(i.FLASH_WaitForLastOperation), (36 bytes).
+    Removing py32t020_flash.o(i.Program_UserData), (436 bytes).
+    Removing py32t020_flash.o(.constdata), (32 bytes).
+    Removing py32t020_ll_adc.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_adc.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_CommonDeInit), (40 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_DeInit), (276 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_Init), (72 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_IsEnabled), (16 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_REG_Init), (56 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_REG_IsStopConversionOngoing), (12 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_REG_StructInit), (16 bytes).
+    Removing py32t020_ll_adc.o(i.LL_ADC_StructInit), (16 bytes).
+    Removing py32t020_ll_comp.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_comp.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_comp.o(i.LL_COMP_DeInit), (12 bytes).
+    Removing py32t020_ll_comp.o(i.LL_COMP_Init), (60 bytes).
+    Removing py32t020_ll_comp.o(i.LL_COMP_StructInit), (12 bytes).
+    Removing py32t020_ll_crc.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_crc.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_crc.o(i.LL_CRC_DeInit), (40 bytes).
+    Removing py32t020_ll_exti.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_exti.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_DeInit), (40 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_DisableEvent), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_DisableIT), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_EnableEvent), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_EnableFallingTrig), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_EnableIT), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_EnableRisingTrig), (16 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_Init), (192 bytes).
+    Removing py32t020_ll_exti.o(i.LL_EXTI_StructInit), (14 bytes).
+    Removing py32t020_ll_gpio.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_gpio.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_gpio.o(i.LL_GPIO_DeInit), (84 bytes).
+    Removing py32t020_ll_gpio.o(i.LL_GPIO_Init), (250 bytes).
+    Removing py32t020_ll_gpio.o(i.LL_GPIO_StructInit), (24 bytes).
+    Removing py32t020_ll_gpio.o(i.LL_IOP_GRP1_ForceReset), (16 bytes).
+    Removing py32t020_ll_gpio.o(i.LL_IOP_GRP1_ReleaseReset), (16 bytes).
+    Removing py32t020_ll_i2c.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_i2c.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_i2c.o(i.LL_I2C_ConfigDataHoldTime), (124 bytes).
+    Removing py32t020_ll_i2c.o(i.LL_I2C_ConfigSpeed), (340 bytes).
+    Removing py32t020_ll_i2c.o(i.LL_I2C_DeInit), (56 bytes).
+    Removing py32t020_ll_i2c.o(i.LL_I2C_Init), (94 bytes).
+    Removing py32t020_ll_i2c.o(i.LL_I2C_StructInit), (20 bytes).
+    Removing py32t020_ll_pwr.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_pwr.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_pwr.o(i.LL_PWR_DeInit), (36 bytes).
+    Removing py32t020_ll_rcc.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_rcc.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_DeInit), (132 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockFreq), (118 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetCOMPClockSource), (20 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetIWDGClockFreq), (60 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetLSCClockFreq), (64 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetMCOClockFreq), (248 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetRTCClockFreq), (160 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetSysClkSource), (16 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq), (28 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_HSE_IsReady), (20 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_LSE_IsReady), (16 bytes).
+    Removing py32t020_ll_rcc.o(i.LL_RCC_LSI_IsReady), (16 bytes).
+    Removing py32t020_ll_rcc.o(i.RCC_GetHCLKClockFreq), (44 bytes).
+    Removing py32t020_ll_rcc.o(i.RCC_GetPCLK1ClockFreq), (40 bytes).
+    Removing py32t020_ll_rcc.o(i.RCC_GetSystemClockFreq), (108 bytes).
+    Removing py32t020_ll_spi.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_spi.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_spi.o(i.LL_SPI_DeInit), (52 bytes).
+    Removing py32t020_ll_spi.o(i.LL_SPI_Init), (92 bytes).
+    Removing py32t020_ll_spi.o(i.LL_SPI_StructInit), (20 bytes).
+    Removing py32t020_ll_tim.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_tim.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_tim.o(i.IC1Config), (54 bytes).
+    Removing py32t020_ll_tim.o(i.IC2Config), (58 bytes).
+    Removing py32t020_ll_tim.o(i.IC3Config), (62 bytes).
+    Removing py32t020_ll_tim.o(i.IC4Config), (64 bytes).
+    Removing py32t020_ll_tim.o(i.LL_APB1_GRP2_ForceReset), (16 bytes).
+    Removing py32t020_ll_tim.o(i.LL_APB1_GRP2_ReleaseReset), (16 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_BDTR_Init), (114 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_BDTR_StructInit), (18 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_DeInit), (60 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_ENCODER_Init), (116 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_ENCODER_StructInit), (36 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_HALLSENSOR_Init), (144 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_HALLSENSOR_StructInit), (12 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_IC_Init), (92 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_IC_StructInit), (18 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_Init), (92 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_OC_Init), (92 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_OC_SetCompareCH2), (4 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_OC_StructInit), (20 bytes).
+    Removing py32t020_ll_tim.o(i.LL_TIM_StructInit), (18 bytes).
+    Removing py32t020_ll_tim.o(i.OC1Config), (140 bytes).
+    Removing py32t020_ll_tim.o(i.OC2Config), (164 bytes).
+    Removing py32t020_ll_tim.o(i.OC3Config), (156 bytes).
+    Removing py32t020_ll_tim.o(i.OC4Config), (124 bytes).
+    Removing py32t020_ll_tim.o(.constdata), (35 bytes).
+    Removing py32t020_ll_uart.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_uart.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_uart.o(i.LL_APB1_GRP1_ForceReset), (16 bytes).
+    Removing py32t020_ll_uart.o(i.LL_APB1_GRP1_ReleaseReset), (16 bytes).
+    Removing py32t020_ll_uart.o(i.LL_UART_DeInit), (112 bytes).
+    Removing py32t020_ll_uart.o(i.LL_UART_Init), (186 bytes).
+    Removing py32t020_ll_uart.o(i.LL_UART_StructInit), (24 bytes).
+    Removing py32t020_ll_utils.o(.rev16_text), (4 bytes).
+    Removing py32t020_ll_utils.o(.revsh_text), (4 bytes).
+    Removing py32t020_ll_utils.o(i.LL_Init1msTick), (40 bytes).
+    Removing py32t020_ll_utils.o(i.LL_SetFlashLatency), (100 bytes).
+    Removing py32t020_ll_utils.o(i.LL_SetSystemCoreClock), (12 bytes).
+    Removing py32t020_ll_utils.o(i.LL_mDelay), (52 bytes).
+    Removing tk_user.o(.rev16_text), (4 bytes).
+    Removing tk_user.o(.revsh_text), (4 bytes).
+    Removing py32t020_tk.o(.rev16_text), (4 bytes).
+    Removing py32t020_tk.o(.revsh_text), (4 bytes).
+    Removing py32t020_tk.o(i.TK_LibDeInit), (68 bytes).
+    Removing tk_lib.o(.rev16_text), (4 bytes).
+    Removing tk_lib.o(.revsh_text), (4 bytes).
+    Removing tk_lib.o(i.log_putstr), (96 bytes).
+
+190 unused section(s) (total 8258 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  idiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  fdiv.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixui.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  fflti.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  ffltui.o ABSOLUTE
+    ../fplib/microlib/fpmul.c                0x00000000   Number         0  fmul.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_adc.c 0x00000000   Number         0  py32t020_ll_adc.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_comp.c 0x00000000   Number         0  py32t020_ll_comp.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_crc.c 0x00000000   Number         0  py32t020_ll_crc.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_exti.c 0x00000000   Number         0  py32t020_ll_exti.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_gpio.c 0x00000000   Number         0  py32t020_ll_gpio.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_i2c.c 0x00000000   Number         0  py32t020_ll_i2c.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_pwr.c 0x00000000   Number         0  py32t020_ll_pwr.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_rcc.c 0x00000000   Number         0  py32t020_ll_rcc.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_spi.c 0x00000000   Number         0  py32t020_ll_spi.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_tim.c 0x00000000   Number         0  py32t020_ll_tim.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_uart.c 0x00000000   Number         0  py32t020_ll_uart.o ABSOLUTE
+    ..\..\Drivers\PY32T020_HAL_Driver\Src\py32t020_ll_utils.c 0x00000000   Number         0  py32t020_ll_utils.o ABSOLUTE
+    ..\..\Touch_Lib\py32t020_tk.c            0x00000000   Number         0  py32t020_tk.o ABSOLUTE
+    ..\..\Touch_Lib\tk_lib.c                 0x00000000   Number         0  tk_lib.o ABSOLUTE
+    ..\..\app_drivers\src\adc_drivers.c      0x00000000   Number         0  adc_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\adc_task.c         0x00000000   Number         0  adc_task.o ABSOLUTE
+    ..\..\app_drivers\src\argb_task.c        0x00000000   Number         0  argb_task.o ABSOLUTE
+    ..\..\app_drivers\src\beep_drivers.c     0x00000000   Number         0  beep_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\drivers.c          0x00000000   Number         0  drivers.o ABSOLUTE
+    ..\..\app_drivers\src\gpio.c             0x00000000   Number         0  gpio.o ABSOLUTE
+    ..\..\app_drivers\src\ir_received.c      0x00000000   Number         0  ir_received.o ABSOLUTE
+    ..\..\app_drivers\src\py32t020_flash.c   0x00000000   Number         0  py32t020_flash.o ABSOLUTE
+    ..\..\app_drivers\src\smg_drivers.c      0x00000000   Number         0  smg_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\smg_task.c         0x00000000   Number         0  smg_task.o ABSOLUTE
+    ..\..\app_drivers\src\spi-led_drivers.c  0x00000000   Number         0  spi-led_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\tim14_drivers.c    0x00000000   Number         0  tim14_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\tim1_drivers.c     0x00000000   Number         0  tim1_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\tm1624.c           0x00000000   Number         0  tm1624.o ABSOLUTE
+    ..\..\app_drivers\src\tm1640.c           0x00000000   Number         0  tm1640.o ABSOLUTE
+    ..\..\app_drivers\src\uart_drivers.c     0x00000000   Number         0  uart_drivers.o ABSOLUTE
+    ..\..\app_drivers\src\uart_task.c        0x00000000   Number         0  uart_task.o ABSOLUTE
+    ..\..\app_drivers\src\user-otp_drivers.c 0x00000000   Number         0  user-otp_drivers.o ABSOLUTE
+    ..\Src\main.c                            0x00000000   Number         0  main.o ABSOLUTE
+    ..\Src\system_py32t020.c                 0x00000000   Number         0  system_py32t020.o ABSOLUTE
+    ..\Src\tk_user.c                         0x00000000   Number         0  tk_user.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_adc.c 0x00000000   Number         0  py32t020_ll_adc.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_comp.c 0x00000000   Number         0  py32t020_ll_comp.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_crc.c 0x00000000   Number         0  py32t020_ll_crc.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_exti.c 0x00000000   Number         0  py32t020_ll_exti.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_gpio.c 0x00000000   Number         0  py32t020_ll_gpio.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_i2c.c 0x00000000   Number         0  py32t020_ll_i2c.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_pwr.c 0x00000000   Number         0  py32t020_ll_pwr.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_rcc.c 0x00000000   Number         0  py32t020_ll_rcc.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_spi.c 0x00000000   Number         0  py32t020_ll_spi.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_tim.c 0x00000000   Number         0  py32t020_ll_tim.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_uart.c 0x00000000   Number         0  py32t020_ll_uart.o ABSOLUTE
+    ..\\..\\Drivers\\PY32T020_HAL_Driver\\Src\\py32t020_ll_utils.c 0x00000000   Number         0  py32t020_ll_utils.o ABSOLUTE
+    ..\\..\\Touch_Lib\\py32t020_tk.c         0x00000000   Number         0  py32t020_tk.o ABSOLUTE
+    ..\\..\\Touch_Lib\\tk_lib.c              0x00000000   Number         0  tk_lib.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\adc_drivers.c  0x00000000   Number         0  adc_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\adc_task.c     0x00000000   Number         0  adc_task.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\argb_task.c    0x00000000   Number         0  argb_task.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\beep_drivers.c 0x00000000   Number         0  beep_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\drivers.c      0x00000000   Number         0  drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\gpio.c         0x00000000   Number         0  gpio.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\ir_received.c  0x00000000   Number         0  ir_received.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\py32t020_flash.c 0x00000000   Number         0  py32t020_flash.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\smg_drivers.c  0x00000000   Number         0  smg_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\smg_task.c     0x00000000   Number         0  smg_task.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\spi-led_drivers.c 0x00000000   Number         0  spi-led_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\tim14_drivers.c 0x00000000   Number         0  tim14_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\tim1_drivers.c 0x00000000   Number         0  tim1_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\tm1624.c       0x00000000   Number         0  tm1624.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\tm1640.c       0x00000000   Number         0  tm1640.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\uart_drivers.c 0x00000000   Number         0  uart_drivers.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\uart_task.c    0x00000000   Number         0  uart_task.o ABSOLUTE
+    ..\\..\\app_drivers\\src\\user-otp_drivers.c 0x00000000   Number         0  user-otp_drivers.o ABSOLUTE
+    ..\\Src\\main.c                          0x00000000   Number         0  main.o ABSOLUTE
+    ..\\Src\\system_py32t020.c               0x00000000   Number         0  system_py32t020.o ABSOLUTE
+    ..\\Src\\tk_user.c                       0x00000000   Number         0  tk_user.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    startup_py32t020xx.s                     0x00000000   Number         0  startup_py32t020xx.o ABSOLUTE
+    RESET                                    0x08000000   Section      192  startup_py32t020xx.o(RESET)
+    .ARM.Collect$$$$00000000                 0x080000c0   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x080000c0   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x080000c4   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x080000c8   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x080000c8   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x080000c8   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    .ARM.Collect$$$$0000000D                 0x080000d0   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
+    .ARM.Collect$$$$0000000F                 0x080000d0   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00002712                 0x080000d0   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x080000d0   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x080000d4   Section       28  startup_py32t020xx.o(.text)
+    .text                                    0x080000f0   Section        0  uidiv.o(.text)
+    .text                                    0x0800011c   Section        0  idiv.o(.text)
+    .text                                    0x08000144   Section        0  fadd.o(.text)
+    .text                                    0x080001f6   Section        0  fmul.o(.text)
+    .text                                    0x08000270   Section        0  fdiv.o(.text)
+    .text                                    0x080002ec   Section        0  fflti.o(.text)
+    .text                                    0x08000302   Section        0  ffltui.o(.text)
+    .text                                    0x08000310   Section        0  ffixui.o(.text)
+    .text                                    0x08000338   Section        0  iusefp.o(.text)
+    .text                                    0x08000338   Section        0  fepilogue.o(.text)
+    .text                                    0x080003bc   Section       36  init.o(.text)
+    i.APP_TouchKeyDataProc                   0x080003e0   Section        0  tk_lib.o(i.APP_TouchKeyDataProc)
+    APP_TouchKeyDataProc                     0x080003e1   Thumb Code   494  tk_lib.o(i.APP_TouchKeyDataProc)
+    i.APP_TouchKeyDifferCalc                 0x080005dc   Section        0  tk_lib.o(i.APP_TouchKeyDifferCalc)
+    APP_TouchKeyDifferCalc                   0x080005dd   Thumb Code   110  tk_lib.o(i.APP_TouchKeyDifferCalc)
+    i.APP_TouchKeyFlagsGenerate              0x08000658   Section        0  tk_lib.o(i.APP_TouchKeyFlagsGenerate)
+    APP_TouchKeyFlagsGenerate                0x08000659   Thumb Code   296  tk_lib.o(i.APP_TouchKeyFlagsGenerate)
+    i.APP_TouchKeyFlagsMask                  0x08000790   Section        0  tk_user.o(i.APP_TouchKeyFlagsMask)
+    APP_TouchKeyFlagsMask                    0x08000791   Thumb Code     4  tk_user.o(i.APP_TouchKeyFlagsMask)
+    i.APP_TouchSliderOrWheelProc             0x08000794   Section        0  tk_lib.o(i.APP_TouchSliderOrWheelProc)
+    APP_TouchSliderOrWheelProc               0x08000795   Thumb Code   930  tk_lib.o(i.APP_TouchSliderOrWheelProc)
+    i.BEEP_Init                              0x08000b44   Section        0  beep_drivers.o(i.BEEP_Init)
+    i.BEEP_On                                0x08000b5c   Section        0  beep_drivers.o(i.BEEP_On)
+    i.BEEP_Timeout                           0x08000b70   Section        0  beep_drivers.o(i.BEEP_Timeout)
+    i.DebugDataUpdate                        0x08000b98   Section        0  tk_lib.o(i.DebugDataUpdate)
+    DebugDataUpdate                          0x08000b99   Thumb Code    86  tk_lib.o(i.DebugDataUpdate)
+    i.DelayTime                              0x08000bf8   Section        0  system_py32t020.o(i.DelayTime)
+    DelayTime                                0x08000bf9   Thumb Code    24  system_py32t020.o(i.DelayTime)
+    i.EXTI0_15_IRQHandlerCallback            0x08000c14   Section        0  drivers.o(i.EXTI0_15_IRQHandlerCallback)
+    i.EXTI0_1_IRQHandler                     0x08000c40   Section        0  gpio.o(i.EXTI0_1_IRQHandler)
+    i.EXTI2_3_IRQHandler                     0x08000c58   Section        0  gpio.o(i.EXTI2_3_IRQHandler)
+    i.EXTI4_15_IRQHandler                    0x08000c70   Section        0  gpio.o(i.EXTI4_15_IRQHandler)
+    i.EnterStop_Callback                     0x08000c88   Section        0  tk_user.o(i.EnterStop_Callback)
+    EnterStop_Callback                       0x08000c89   Thumb Code    26  tk_user.o(i.EnterStop_Callback)
+    i.ExitStop_Callback                      0x08000cac   Section        0  tk_user.o(i.ExitStop_Callback)
+    ExitStop_Callback                        0x08000cad   Thumb Code    48  tk_user.o(i.ExitStop_Callback)
+    i.GPIO_ClearBit                          0x08000cec   Section        0  gpio.o(i.GPIO_ClearBit)
+    i.GPIO_Init                              0x08000d0c   Section        0  gpio.o(i.GPIO_Init)
+    i.GPIO_SetBit                            0x0800105c   Section        0  gpio.o(i.GPIO_SetBit)
+    i.Get_InsideDif                          0x0800107c   Section        0  tk_lib.o(i.Get_InsideDif)
+    i.HighSensitvityChs                      0x080010c4   Section        0  tk_lib.o(i.HighSensitvityChs)
+    i.LED_Show                               0x080010c8   Section        0  smg_task.o(i.LED_Show)
+    i.LL_EXTI_DisableFallingTrig             0x080010f4   Section        0  gpio.o(i.LL_EXTI_DisableFallingTrig)
+    LL_EXTI_DisableFallingTrig               0x080010f5   Thumb Code    12  gpio.o(i.LL_EXTI_DisableFallingTrig)
+    i.LL_EXTI_DisableRisingTrig              0x08001104   Section        0  gpio.o(i.LL_EXTI_DisableRisingTrig)
+    LL_EXTI_DisableRisingTrig                0x08001105   Thumb Code    12  gpio.o(i.LL_EXTI_DisableRisingTrig)
+    i.LL_EXTI_EnableFallingTrig              0x08001114   Section        0  gpio.o(i.LL_EXTI_EnableFallingTrig)
+    LL_EXTI_EnableFallingTrig                0x08001115   Thumb Code    12  gpio.o(i.LL_EXTI_EnableFallingTrig)
+    i.LL_EXTI_EnableRisingTrig               0x08001124   Section        0  gpio.o(i.LL_EXTI_EnableRisingTrig)
+    LL_EXTI_EnableRisingTrig                 0x08001125   Thumb Code    12  gpio.o(i.LL_EXTI_EnableRisingTrig)
+    i.LL_EXTI_SetEXTISource                  0x08001134   Section        0  gpio.o(i.LL_EXTI_SetEXTISource)
+    LL_EXTI_SetEXTISource                    0x08001135   Thumb Code    40  gpio.o(i.LL_EXTI_SetEXTISource)
+    i.LL_GPIO_SetPinMode                     0x08001160   Section        0  gpio.o(i.LL_GPIO_SetPinMode)
+    LL_GPIO_SetPinMode                       0x08001161   Thumb Code    26  gpio.o(i.LL_GPIO_SetPinMode)
+    i.LL_GPIO_SetPinOutputType               0x0800117a   Section        0  gpio.o(i.LL_GPIO_SetPinOutputType)
+    LL_GPIO_SetPinOutputType                 0x0800117b   Thumb Code    16  gpio.o(i.LL_GPIO_SetPinOutputType)
+    i.LL_GPIO_SetPinPull                     0x0800118a   Section        0  gpio.o(i.LL_GPIO_SetPinPull)
+    LL_GPIO_SetPinPull                       0x0800118b   Thumb Code    26  gpio.o(i.LL_GPIO_SetPinPull)
+    i.LL_IOP_GRP1_EnableClock                0x080011a4   Section        0  main.o(i.LL_IOP_GRP1_EnableClock)
+    LL_IOP_GRP1_EnableClock                  0x080011a5   Thumb Code    24  main.o(i.LL_IOP_GRP1_EnableClock)
+    i.SMG_Default                            0x080011c0   Section        0  smg_task.o(i.SMG_Default)
+    i.SMG_Init                               0x080011d4   Section        0  smg_drivers.o(i.SMG_Init)
+    i.SMG_Scan                               0x080012b4   Section        0  smg_drivers.o(i.SMG_Scan)
+    i.SMG_Show                               0x08001338   Section        0  smg_task.o(i.SMG_Show)
+    i.SMG_Sleep                              0x08001368   Section        0  smg_drivers.o(i.SMG_Sleep)
+    i.SMG_Wake                               0x080013a4   Section        0  smg_drivers.o(i.SMG_Wake)
+    i.SysTick_Handler                        0x080013b0   Section        0  main.o(i.SysTick_Handler)
+    i.SystemClockConfig                      0x080013d8   Section        0  main.o(i.SystemClockConfig)
+    SystemClockConfig                        0x080013d9   Thumb Code   330  main.o(i.SystemClockConfig)
+    i.SystemCoreClockUpdate                  0x08001548   Section        0  system_py32t020.o(i.SystemCoreClockUpdate)
+    i.SystemInit                             0x080015e4   Section        0  system_py32t020.o(i.SystemInit)
+    i.TK_CsdIdacTrim                         0x08001614   Section        0  py32t020_tk.o(i.TK_CsdIdacTrim)
+    TK_CsdIdacTrim                           0x08001615   Thumb Code   482  py32t020_tk.o(i.TK_CsdIdacTrim)
+    i.TK_CsdIdacTrimChs                      0x08001804   Section        0  py32t020_tk.o(i.TK_CsdIdacTrimChs)
+    i.TK_CsdIdacTrimLp                       0x08001894   Section        0  py32t020_tk.o(i.TK_CsdIdacTrimLp)
+    TK_CsdIdacTrimLp                         0x08001895   Thumb Code   252  py32t020_tk.o(i.TK_CsdIdacTrimLp)
+    i.TK_EnterStop                           0x08001998   Section        0  tk_lib.o(i.TK_EnterStop)
+    TK_EnterStop                             0x08001999   Thumb Code   462  tk_lib.o(i.TK_EnterStop)
+    i.TK_FilterInit                          0x08001b80   Section        0  tk_lib.o(i.TK_FilterInit)
+    TK_FilterInit                            0x08001b81   Thumb Code    84  tk_lib.o(i.TK_FilterInit)
+    i.TK_Filtering                           0x08001bdc   Section        0  tk_lib.o(i.TK_Filtering)
+    TK_Filtering                             0x08001bdd   Thumb Code   196  tk_lib.o(i.TK_Filtering)
+    i.TK_GetArea                             0x08001cac   Section        0  tk_lib.o(i.TK_GetArea)
+    TK_GetArea                               0x08001cad   Thumb Code    72  tk_lib.o(i.TK_GetArea)
+    i.TK_GetVersion                          0x08001cfc   Section        0  tk_lib.o(i.TK_GetVersion)
+    i.TK_IRQHandler                          0x08001d04   Section        0  tk_user.o(i.TK_IRQHandler)
+    i.TK_IRQHandlerCallback                  0x08001d0c   Section        0  tk_lib.o(i.TK_IRQHandlerCallback)
+    i.TK_Init                                0x08001dec   Section        0  tk_lib.o(i.TK_Init)
+    i.TK_LPSenseStart                        0x080022d8   Section        0  py32t020_tk.o(i.TK_LPSenseStart)
+    TK_LPSenseStart                          0x080022d9   Thumb Code    82  py32t020_tk.o(i.TK_LPSenseStart)
+    i.TK_LibIRQHandler                       0x08002330   Section        0  py32t020_tk.o(i.TK_LibIRQHandler)
+    i.TK_LibInit                             0x0800236c   Section        0  py32t020_tk.o(i.TK_LibInit)
+    i.TK_Loop                                0x080025a4   Section        0  main.o(i.TK_Loop)
+    TK_Loop                                  0x080025a5   Thumb Code   124  main.o(i.TK_Loop)
+    i.TK_LpDeInit                            0x08002628   Section        0  py32t020_tk.o(i.TK_LpDeInit)
+    i.TK_LpInit                              0x08002698   Section        0  py32t020_tk.o(i.TK_LpInit)
+    i.TK_MainFsm                             0x08002790   Section        0  tk_lib.o(i.TK_MainFsm)
+    i.TK_MultiChAcqNext                      0x080028b8   Section        0  tk_lib.o(i.TK_MultiChAcqNext)
+    TK_MultiChAcqNext                        0x080028b9   Thumb Code    66  tk_lib.o(i.TK_MultiChAcqNext)
+    i.TK_MultiChAcqStart                     0x08002904   Section        0  tk_lib.o(i.TK_MultiChAcqStart)
+    TK_MultiChAcqStart                       0x08002905   Thumb Code    50  tk_lib.o(i.TK_MultiChAcqStart)
+    i.TK_RTC_EnterInitMode                   0x08002940   Section        0  py32t020_tk.o(i.TK_RTC_EnterInitMode)
+    TK_RTC_EnterInitMode                     0x08002941   Thumb Code    18  py32t020_tk.o(i.TK_RTC_EnterInitMode)
+    i.TK_RTC_ExitInitMode                    0x08002958   Section        0  py32t020_tk.o(i.TK_RTC_ExitInitMode)
+    TK_RTC_ExitInitMode                      0x08002959   Thumb Code    18  py32t020_tk.o(i.TK_RTC_ExitInitMode)
+    i.TK_RTC_WaitForSynchro                  0x08002970   Section        0  py32t020_tk.o(i.TK_RTC_WaitForSynchro)
+    TK_RTC_WaitForSynchro                    0x08002971   Thumb Code    18  py32t020_tk.o(i.TK_RTC_WaitForSynchro)
+    i.TK_RegisterCfg                         0x08002988   Section        0  tk_user.o(i.TK_RegisterCfg)
+    i.TK_SetAreaConfirmCNT                   0x08002a44   Section        0  tk_lib.o(i.TK_SetAreaConfirmCNT)
+    TK_SetAreaConfirmCNT                     0x08002a45   Thumb Code    52  tk_lib.o(i.TK_SetAreaConfirmCNT)
+    i.TK_SetBaseLineAll                      0x08002a80   Section        0  tk_lib.o(i.TK_SetBaseLineAll)
+    TK_SetBaseLineAll                        0x08002a81   Thumb Code    94  tk_lib.o(i.TK_SetBaseLineAll)
+    i.TK_SetLfsrw                            0x08002aec   Section        0  py32t020_tk.o(i.TK_SetLfsrw)
+    i.TK_SetSenseStart                       0x08002b30   Section        0  py32t020_tk.o(i.TK_SetSenseStart)
+    i.TK_TimerHandler                        0x08002cb0   Section        0  tk_lib.o(i.TK_TimerHandler)
+    i.TK_UpdatBaseLineData                   0x08002d34   Section        0  tk_lib.o(i.TK_UpdatBaseLineData)
+    i.TK_UserParaInit                        0x08002dc4   Section        0  tk_user.o(i.TK_UserParaInit)
+    i.TK_WinDetection                        0x08003004   Section        0  tk_lib.o(i.TK_WinDetection)
+    TK_WinDetection                          0x08003005   Thumb Code   428  tk_lib.o(i.TK_WinDetection)
+    i.Timer_RTC_Init                         0x080031c8   Section        0  py32t020_tk.o(i.Timer_RTC_Init)
+    i.__ARM_common_switch8                   0x080032e0   Section        0  gpio.o(i.__ARM_common_switch8)
+    i.__NVIC_DisableIRQ                      0x080032fc   Section        0  py32t020_tk.o(i.__NVIC_DisableIRQ)
+    __NVIC_DisableIRQ                        0x080032fd   Thumb Code    26  py32t020_tk.o(i.__NVIC_DisableIRQ)
+    i.__NVIC_EnableIRQ                       0x0800331c   Section        0  gpio.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x0800331d   Thumb Code    26  gpio.o(i.__NVIC_EnableIRQ)
+    i.__NVIC_EnableIRQ                       0x0800333c   Section        0  py32t020_tk.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x0800333d   Thumb Code    18  py32t020_tk.o(i.__NVIC_EnableIRQ)
+    i.__NVIC_SetPriority                     0x08003354   Section        0  main.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x08003355   Thumb Code   110  main.o(i.__NVIC_SetPriority)
+    i.__NVIC_SetPriority                     0x080033cc   Section        0  gpio.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x080033cd   Thumb Code   110  gpio.o(i.__NVIC_SetPriority)
+    i.__RTC_DeInit                           0x08003444   Section        0  py32t020_tk.o(i.__RTC_DeInit)
+    __RTC_DeInit                             0x08003445   Thumb Code   102  py32t020_tk.o(i.__RTC_DeInit)
+    i.__scatterload_copy                     0x080034bc   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080034ca   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080034cc   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.app_drivers_init                       0x080034da   Section        0  drivers.o(i.app_drivers_init)
+    i.app_drivers_loop                       0x080034e8   Section        0  drivers.o(i.app_drivers_loop)
+    i.app_drivers_timer                      0x080034fc   Section        0  drivers.o(i.app_drivers_timer)
+    i.gotosleep                              0x08003508   Section        0  py32t020_tk.o(i.gotosleep)
+    i.main                                   0x0800351c   Section        0  main.o(i.main)
+    i.nop_delay                              0x08003534   Section        0  py32t020_tk.o(i.nop_delay)
+    nop_delay                                0x08003535   Thumb Code    16  py32t020_tk.o(i.nop_delay)
+    .constdata                               0x08003544   Section      128  system_py32t020.o(.constdata)
+    .constdata                               0x080035c4   Section       53  smg_task.o(.constdata)
+    OFFSET_TAB_CCMRx                         0x080035c4   Data           7  smg_task.o(.constdata)
+    SHIFT_TAB_OCxx                           0x080035cb   Data           7  smg_task.o(.constdata)
+    SHIFT_TAB_ICxx                           0x080035d2   Data           7  smg_task.o(.constdata)
+    SHIFT_TAB_CCxP                           0x080035d9   Data           7  smg_task.o(.constdata)
+    SHIFT_TAB_OISx                           0x080035e0   Data           7  smg_task.o(.constdata)
+    .constdata                               0x080035fc   Section      208  gpio.o(.constdata)
+    T020_IO                                  0x080035fc   Data         208  gpio.o(.constdata)
+    .constdata                               0x080036cc   Section       48  smg_drivers.o(.constdata)
+    OFFSET_TAB_CCMRx                         0x080036cc   Data           7  smg_drivers.o(.constdata)
+    SHIFT_TAB_OCxx                           0x080036d3   Data           7  smg_drivers.o(.constdata)
+    SHIFT_TAB_ICxx                           0x080036da   Data           7  smg_drivers.o(.constdata)
+    SHIFT_TAB_CCxP                           0x080036e1   Data           7  smg_drivers.o(.constdata)
+    SHIFT_TAB_OISx                           0x080036e8   Data           7  smg_drivers.o(.constdata)
+    .constdata                               0x080036fc   Section      166  tk_user.o(.constdata)
+    OFFSET_TAB_CCMRx                         0x080036fc   Data           7  tk_user.o(.constdata)
+    SHIFT_TAB_OCxx                           0x08003703   Data           7  tk_user.o(.constdata)
+    SHIFT_TAB_ICxx                           0x0800370a   Data           7  tk_user.o(.constdata)
+    SHIFT_TAB_CCxP                           0x08003711   Data           7  tk_user.o(.constdata)
+    SHIFT_TAB_OISx                           0x08003718   Data           7  tk_user.o(.constdata)
+    .constdata                               0x080037a4   Section      240  py32t020_tk.o(.constdata)
+    TK_IO                                    0x080037c4   Data         208  py32t020_tk.o(.constdata)
+    .constdata                               0x08003894   Section        4  tk_lib.o(.constdata)
+    TK_LibVersion                            0x08003894   Data           4  tk_lib.o(.constdata)
+    .constdata                               0x08003898   Section       32  tk_lib.o(.constdata)
+    .ARM.__AT_0x20000000                     0x20000000   Section       52  tk_lib.o(.ARM.__AT_0x20000000)
+    __tagsym$$used                           0x20000000   Number         0  tk_lib.o(.ARM.__AT_0x20000000)
+    .data                                    0x20000034   Section        4  system_py32t020.o(.data)
+    .data                                    0x20000038   Section        6  main.o(.data)
+    Prescaler                                0x2000003c   Data           2  main.o(.data)
+    .data                                    0x20000040   Section        4  drivers.o(.data)
+    .data                                    0x20000044   Section        4  gpio.o(.data)
+    exti_bit                                 0x20000044   Data           4  gpio.o(.data)
+    .data                                    0x20000048   Section        5  smg_drivers.o(.data)
+    smg_run                                  0x20000048   Data           1  smg_drivers.o(.data)
+    smg_com                                  0x20000049   Data           1  smg_drivers.o(.data)
+    .data                                    0x2000004d   Section        1  beep_drivers.o(.data)
+    beep_delay                               0x2000004d   Data           1  beep_drivers.o(.data)
+    .data                                    0x20000050   Section       16  py32t020_tk.o(.data)
+    rtc_state                                0x20000050   Data           1  py32t020_tk.o(.data)
+    Lfsrw_now                                0x20000051   Data           1  py32t020_tk.o(.data)
+    ShieldStep                               0x20000052   Data           1  py32t020_tk.o(.data)
+    RefIdac                                  0x20000053   Data           1  py32t020_tk.o(.data)
+    ShieldIdac                               0x20000054   Data           3  py32t020_tk.o(.data)
+    CRH                                      0x20000058   Data           4  py32t020_tk.o(.data)
+    .data                                    0x20000060   Section       72  tk_lib.o(.data)
+    last_key                                 0x20000060   Data           1  tk_lib.o(.data)
+    SliderRelease                            0x20000061   Data           1  tk_lib.o(.data)
+    SliderUpBaseLine                         0x20000062   Data           1  tk_lib.o(.data)
+    ms_cnt                                   0x20000063   Data           1  tk_lib.o(.data)
+    RawDatasAcquisitionState                 0x20000064   Data           1  tk_lib.o(.data)
+    AcqTkChIdx                               0x20000065   Data           1  tk_lib.o(.data)
+    DtRdy                                    0x20000066   Data           1  tk_lib.o(.data)
+    AcqTkChType                              0x20000067   Data           1  tk_lib.o(.data)
+    WinDetection                             0x20000068   Data           1  tk_lib.o(.data)
+    app_connect                              0x2000006a   Data           1  tk_lib.o(.data)
+    TkAcqAbandonCNT                          0x2000006c   Data           2  tk_lib.o(.data)
+    dbg_ref                                  0x20000070   Data           2  tk_lib.o(.data)
+    InsideDif                                0x20000072   Data           2  tk_lib.o(.data)
+    WinDetectionIdx                          0x20000074   Data           4  tk_lib.o(.data)
+    idacdetection_chs                        0x20000078   Data           4  tk_lib.o(.data)
+    TK_WheelConfirmTickCnt                   0x2000007c   Data           4  tk_lib.o(.data)
+    ref_val                                  0x20000084   Data           4  tk_lib.o(.data)
+    TK_TickCouter                            0x20000088   Data           8  tk_lib.o(.data)
+    TK_DataBuf                               0x20000090   Data           8  tk_lib.o(.data)
+    TouchKeyChInfor                          0x20000098   Data           8  tk_lib.o(.data)
+    app_log                                  0x200000a0   Data           8  tk_lib.o(.data)
+    .bss                                     0x200000a8   Section      352  tk_user.o(.bss)
+    TK_Mem                                   0x200000a8   Data         352  tk_user.o(.bss)
+    .bss                                     0x20000208   Section      138  py32t020_tk.o(.bss)
+    .bss                                     0x20000294   Section      516  tk_lib.o(.bss)
+    TouchKeyDatas                            0x20000294   Data          40  tk_lib.o(.bss)
+    SliderChInfor                            0x200002bc   Data          20  tk_lib.o(.bss)
+    TkAreaInfor                              0x200002d0   Data          20  tk_lib.o(.bss)
+    app_log_fifo                             0x200002e4   Data         128  tk_lib.o(.bss)
+    AreaRawDataBase                          0x20000364   Data          56  tk_lib.o(.bss)
+    Chip                                     0x200003c0   Data          16  tk_lib.o(.bss)
+    Inside_Raw                               0x200003d0   Data         200  tk_lib.o(.bss)
+    STACK                                    0x20000498   Section      512  startup_py32t020xx.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv3M$S$PE$A:L22$X:L11$S22$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    __Vectors_Size                           0x000000c0   Number         0  startup_py32t020xx.o ABSOLUTE
+    __Vectors                                0x08000000   Data           4  startup_py32t020xx.o(RESET)
+    __Vectors_End                            0x080000c0   Data           0  startup_py32t020xx.o(RESET)
+    __main                                   0x080000c1   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x080000c1   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x080000c5   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x080000c9   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x080000c9   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x080000c9   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x080000c9   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_final_cpp                           0x080000d1   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
+    __rt_final_exit                          0x080000d1   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
+    Reset_Handler                            0x080000d5   Thumb Code     8  startup_py32t020xx.o(.text)
+    NMI_Handler                              0x080000dd   Thumb Code     2  startup_py32t020xx.o(.text)
+    HardFault_Handler                        0x080000df   Thumb Code     2  startup_py32t020xx.o(.text)
+    SVC_Handler                              0x080000e1   Thumb Code     2  startup_py32t020xx.o(.text)
+    PendSV_Handler                           0x080000e3   Thumb Code     2  startup_py32t020xx.o(.text)
+    ADC_COMP_IRQHandler                      0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    FLASH_IRQHandler                         0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    I2C1_IRQHandler                          0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    RCC_IRQHandler                           0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    RTC_IRQHandler                           0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    SPI1_IRQHandler                          0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    TIM14_IRQHandler                         0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    TIM1_BRK_UP_TRG_COM_IRQHandler           0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    TIM1_CC_IRQHandler                       0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    UART1_IRQHandler                         0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    UART2_IRQHandler                         0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    UART3_IRQHandler                         0x080000e7   Thumb Code     0  startup_py32t020xx.o(.text)
+    __aeabi_uidiv                            0x080000f1   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x080000f1   Thumb Code    44  uidiv.o(.text)
+    __aeabi_idiv                             0x0800011d   Thumb Code     0  idiv.o(.text)
+    __aeabi_idivmod                          0x0800011d   Thumb Code    40  idiv.o(.text)
+    __aeabi_fadd                             0x08000145   Thumb Code   162  fadd.o(.text)
+    __aeabi_fsub                             0x080001e7   Thumb Code     8  fadd.o(.text)
+    __aeabi_frsub                            0x080001ef   Thumb Code     8  fadd.o(.text)
+    __aeabi_fmul                             0x080001f7   Thumb Code   122  fmul.o(.text)
+    __aeabi_fdiv                             0x08000271   Thumb Code   124  fdiv.o(.text)
+    __aeabi_i2f                              0x080002ed   Thumb Code    22  fflti.o(.text)
+    __aeabi_ui2f                             0x08000303   Thumb Code    14  ffltui.o(.text)
+    __aeabi_f2uiz                            0x08000311   Thumb Code    40  ffixui.o(.text)
+    __I$use$fp                               0x08000339   Thumb Code     0  iusefp.o(.text)
+    _float_round                             0x08000339   Thumb Code    16  fepilogue.o(.text)
+    _float_epilogue                          0x08000349   Thumb Code   114  fepilogue.o(.text)
+    __scatterload                            0x080003bd   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x080003bd   Thumb Code     0  init.o(.text)
+    BEEP_Init                                0x08000b45   Thumb Code    18  beep_drivers.o(i.BEEP_Init)
+    BEEP_On                                  0x08000b5d   Thumb Code    16  beep_drivers.o(i.BEEP_On)
+    BEEP_Timeout                             0x08000b71   Thumb Code    36  beep_drivers.o(i.BEEP_Timeout)
+    EXTI0_15_IRQHandlerCallback              0x08000c15   Thumb Code    40  drivers.o(i.EXTI0_15_IRQHandlerCallback)
+    EXTI0_1_IRQHandler                       0x08000c41   Thumb Code    20  gpio.o(i.EXTI0_1_IRQHandler)
+    EXTI2_3_IRQHandler                       0x08000c59   Thumb Code    20  gpio.o(i.EXTI2_3_IRQHandler)
+    EXTI4_15_IRQHandler                      0x08000c71   Thumb Code    20  gpio.o(i.EXTI4_15_IRQHandler)
+    GPIO_ClearBit                            0x08000ced   Thumb Code    26  gpio.o(i.GPIO_ClearBit)
+    GPIO_Init                                0x08000d0d   Thumb Code   824  gpio.o(i.GPIO_Init)
+    GPIO_SetBit                              0x0800105d   Thumb Code    26  gpio.o(i.GPIO_SetBit)
+    Get_InsideDif                            0x0800107d   Thumb Code    60  tk_lib.o(i.Get_InsideDif)
+    HighSensitvityChs                        0x080010c5   Thumb Code     2  tk_lib.o(i.HighSensitvityChs)
+    LED_Show                                 0x080010c9   Thumb Code    36  smg_task.o(i.LED_Show)
+    SMG_Default                              0x080011c1   Thumb Code    14  smg_task.o(i.SMG_Default)
+    SMG_Init                                 0x080011d5   Thumb Code   198  smg_drivers.o(i.SMG_Init)
+    SMG_Scan                                 0x080012b5   Thumb Code   110  smg_drivers.o(i.SMG_Scan)
+    SMG_Show                                 0x08001339   Thumb Code    38  smg_task.o(i.SMG_Show)
+    SMG_Sleep                                0x08001369   Thumb Code    42  smg_drivers.o(i.SMG_Sleep)
+    SMG_Wake                                 0x080013a5   Thumb Code     8  smg_drivers.o(i.SMG_Wake)
+    SysTick_Handler                          0x080013b1   Thumb Code    36  main.o(i.SysTick_Handler)
+    SystemCoreClockUpdate                    0x08001549   Thumb Code   134  system_py32t020.o(i.SystemCoreClockUpdate)
+    SystemInit                               0x080015e5   Thumb Code    34  system_py32t020.o(i.SystemInit)
+    TK_CsdIdacTrimChs                        0x08001805   Thumb Code   136  py32t020_tk.o(i.TK_CsdIdacTrimChs)
+    TK_GetVersion                            0x08001cfd   Thumb Code     4  tk_lib.o(i.TK_GetVersion)
+    TK_IRQHandler                            0x08001d05   Thumb Code     8  tk_user.o(i.TK_IRQHandler)
+    TK_IRQHandlerCallback                    0x08001d0d   Thumb Code   204  tk_lib.o(i.TK_IRQHandlerCallback)
+    TK_Init                                  0x08001ded   Thumb Code  1250  tk_lib.o(i.TK_Init)
+    TK_LibIRQHandler                         0x08002331   Thumb Code    52  py32t020_tk.o(i.TK_LibIRQHandler)
+    TK_LibInit                               0x0800236d   Thumb Code   540  py32t020_tk.o(i.TK_LibInit)
+    TK_LpDeInit                              0x08002629   Thumb Code   102  py32t020_tk.o(i.TK_LpDeInit)
+    TK_LpInit                                0x08002699   Thumb Code   230  py32t020_tk.o(i.TK_LpInit)
+    TK_MainFsm                               0x08002791   Thumb Code   276  tk_lib.o(i.TK_MainFsm)
+    TK_RegisterCfg                           0x08002989   Thumb Code   168  tk_user.o(i.TK_RegisterCfg)
+    TK_SetLfsrw                              0x08002aed   Thumb Code    54  py32t020_tk.o(i.TK_SetLfsrw)
+    TK_SetSenseStart                         0x08002b31   Thumb Code   368  py32t020_tk.o(i.TK_SetSenseStart)
+    TK_TimerHandler                          0x08002cb1   Thumb Code   124  tk_lib.o(i.TK_TimerHandler)
+    TK_UpdatBaseLineData                     0x08002d35   Thumb Code   132  tk_lib.o(i.TK_UpdatBaseLineData)
+    TK_UserParaInit                          0x08002dc5   Thumb Code   516  tk_user.o(i.TK_UserParaInit)
+    Timer_RTC_Init                           0x080031c9   Thumb Code   250  py32t020_tk.o(i.Timer_RTC_Init)
+    __ARM_common_switch8                     0x080032e1   Thumb Code    28  gpio.o(i.__ARM_common_switch8)
+    __scatterload_copy                       0x080034bd   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080034cb   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080034cd   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    app_drivers_init                         0x080034db   Thumb Code    12  drivers.o(i.app_drivers_init)
+    app_drivers_loop                         0x080034e9   Thumb Code    16  drivers.o(i.app_drivers_loop)
+    app_drivers_timer                        0x080034fd   Thumb Code    12  drivers.o(i.app_drivers_timer)
+    gotosleep                                0x08003509   Thumb Code    14  py32t020_tk.o(i.gotosleep)
+    main                                     0x0800351d   Thumb Code    24  main.o(i.main)
+    AHBPrescTable                            0x08003544   Data          64  system_py32t020.o(.constdata)
+    APBPrescTable                            0x08003584   Data          32  system_py32t020.o(.constdata)
+    HSIFreqTable                             0x080035a4   Data          32  system_py32t020.o(.constdata)
+    num_tbl                                  0x080035e7   Data          10  smg_task.o(.constdata)
+    TK_LED                                   0x080035f1   Data           8  smg_task.o(.constdata)
+    SEG_PIN                                  0x080036ef   Data           8  smg_drivers.o(.constdata)
+    COM_PIN                                  0x080036f7   Data           5  smg_drivers.o(.constdata)
+    KEY_CH_TAB                               0x0800371f   Data          26  tk_user.o(.constdata)
+    KEY_THD_TAB                              0x0800373a   Data          52  tk_user.o(.constdata)
+    SLIDERORWHEEL_CH_TAB                     0x0800376e   Data          32  tk_user.o(.constdata)
+    SLIDERORWHEEL_TYPE_TAB                   0x0800378e   Data           4  tk_user.o(.constdata)
+    SLIDERORWHEEL_RESOLUTION_TAB             0x08003792   Data           8  tk_user.o(.constdata)
+    SLIDERORWHEEL_THD_TAB                    0x0800379a   Data           8  tk_user.o(.constdata)
+    LFSRP_Tbl                                0x080037a4   Data          32  py32t020_tk.o(.constdata)
+    _Param                                   0x08003898   Data          32  tk_lib.o(.constdata)
+    Region$$Table$$Base                      0x080038b8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080038d8   Number         0  anon$$obj.o(Region$$Table)
+    TK_Info                                  0x20000000   Data          52  tk_lib.o(.ARM.__AT_0x20000000)
+    SystemCoreClock                          0x20000034   Data           4  system_py32t020.o(.data)
+    KeyFlag                                  0x20000038   Data           4  main.o(.data)
+    EXTI_Flag                                0x20000040   Data           4  drivers.o(.data)
+    smg_data                                 0x2000004a   Data           3  smg_drivers.o(.data)
+    TrimStep_Prs                             0x2000005c   Data           4  py32t020_tk.o(.data)
+    ShieldInfor                              0x20000069   Data           1  tk_lib.o(.data)
+    t020                                     0x2000006e   Data           2  tk_lib.o(.data)
+    FilterCtr                                0x20000080   Data           4  tk_lib.o(.data)
+    TK_Handle                                0x20000208   Data         112  py32t020_tk.o(.bss)
+    TrimIdac_Prs                             0x20000278   Data          26  py32t020_tk.o(.bss)
+    TKCtr                                    0x2000039c   Data          36  tk_lib.o(.bss)
+    __initial_sp                             0x20000698   Data           0  startup_py32t020xx.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x080000c1
+
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003980, Max: 0x00008000, ABSOLUTE)
+
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000038d8, Max: 0x00008000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x08000000   0x08000000   0x000000c0   Data   RO            3    RESET               startup_py32t020xx.o
+    0x080000c0   0x080000c0   0x00000000   Code   RO         1882  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x080000c0   0x080000c0   0x00000004   Code   RO         1901    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x080000c4   0x080000c4   0x00000004   Code   RO         1904    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO         1906    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO         1908    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x080000c8   0x080000c8   0x00000008   Code   RO         1909    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO         1911    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO         1913    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x080000d0   0x080000d0   0x00000004   Code   RO         1902    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x080000d4   0x080000d4   0x0000001c   Code   RO            4    .text               startup_py32t020xx.o
+    0x080000f0   0x080000f0   0x0000002c   Code   RO         1885    .text               mc_p.l(uidiv.o)
+    0x0800011c   0x0800011c   0x00000028   Code   RO         1887    .text               mc_p.l(idiv.o)
+    0x08000144   0x08000144   0x000000b2   Code   RO         1889    .text               mf_p.l(fadd.o)
+    0x080001f6   0x080001f6   0x0000007a   Code   RO         1891    .text               mf_p.l(fmul.o)
+    0x08000270   0x08000270   0x0000007c   Code   RO         1893    .text               mf_p.l(fdiv.o)
+    0x080002ec   0x080002ec   0x00000016   Code   RO         1895    .text               mf_p.l(fflti.o)
+    0x08000302   0x08000302   0x0000000e   Code   RO         1897    .text               mf_p.l(ffltui.o)
+    0x08000310   0x08000310   0x00000028   Code   RO         1899    .text               mf_p.l(ffixui.o)
+    0x08000338   0x08000338   0x00000000   Code   RO         1915    .text               mc_p.l(iusefp.o)
+    0x08000338   0x08000338   0x00000082   Code   RO         1916    .text               mf_p.l(fepilogue.o)
+    0x080003ba   0x080003ba   0x00000002   PAD
+    0x080003bc   0x080003bc   0x00000024   Code   RO         1918    .text               mc_p.l(init.o)
+    0x080003e0   0x080003e0   0x000001fc   Code   RO         1728    i.APP_TouchKeyDataProc  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080005dc   0x080005dc   0x0000007c   Code   RO         1729    i.APP_TouchKeyDifferCalc  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08000658   0x08000658   0x00000138   Code   RO         1730    i.APP_TouchKeyFlagsGenerate  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08000790   0x08000790   0x00000004   Code   RO         1523    i.APP_TouchKeyFlagsMask  tk_user.o
+    0x08000794   0x08000794   0x000003b0   Code   RO         1731    i.APP_TouchSliderOrWheelProc  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08000b44   0x08000b44   0x00000018   Code   RO          602    i.BEEP_Init         beep_drivers.o
+    0x08000b5c   0x08000b5c   0x00000014   Code   RO          603    i.BEEP_On           beep_drivers.o
+    0x08000b70   0x08000b70   0x00000028   Code   RO          604    i.BEEP_Timeout      beep_drivers.o
+    0x08000b98   0x08000b98   0x00000060   Code   RO         1732    i.DebugDataUpdate   Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08000bf8   0x08000bf8   0x0000001c   Code   RO           12    i.DelayTime         system_py32t020.o
+    0x08000c14   0x08000c14   0x0000002c   Code   RO          211    i.EXTI0_15_IRQHandlerCallback  drivers.o
+    0x08000c40   0x08000c40   0x00000018   Code   RO          372    i.EXTI0_1_IRQHandler  gpio.o
+    0x08000c58   0x08000c58   0x00000018   Code   RO          373    i.EXTI2_3_IRQHandler  gpio.o
+    0x08000c70   0x08000c70   0x00000018   Code   RO          374    i.EXTI4_15_IRQHandler  gpio.o
+    0x08000c88   0x08000c88   0x00000024   Code   RO         1524    i.EnterStop_Callback  tk_user.o
+    0x08000cac   0x08000cac   0x00000040   Code   RO         1525    i.ExitStop_Callback  tk_user.o
+    0x08000cec   0x08000cec   0x00000020   Code   RO          375    i.GPIO_ClearBit     gpio.o
+    0x08000d0c   0x08000d0c   0x00000350   Code   RO          376    i.GPIO_Init         gpio.o
+    0x0800105c   0x0800105c   0x00000020   Code   RO          378    i.GPIO_SetBit       gpio.o
+    0x0800107c   0x0800107c   0x00000048   Code   RO         1733    i.Get_InsideDif     Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080010c4   0x080010c4   0x00000002   Code   RO         1734    i.HighSensitvityChs  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080010c6   0x080010c6   0x00000002   PAD
+    0x080010c8   0x080010c8   0x0000002c   Code   RO          284    i.LED_Show          smg_task.o
+    0x080010f4   0x080010f4   0x00000010   Code   RO          380    i.LL_EXTI_DisableFallingTrig  gpio.o
+    0x08001104   0x08001104   0x00000010   Code   RO          381    i.LL_EXTI_DisableRisingTrig  gpio.o
+    0x08001114   0x08001114   0x00000010   Code   RO          382    i.LL_EXTI_EnableFallingTrig  gpio.o
+    0x08001124   0x08001124   0x00000010   Code   RO          383    i.LL_EXTI_EnableRisingTrig  gpio.o
+    0x08001134   0x08001134   0x0000002c   Code   RO          384    i.LL_EXTI_SetEXTISource  gpio.o
+    0x08001160   0x08001160   0x0000001a   Code   RO          385    i.LL_GPIO_SetPinMode  gpio.o
+    0x0800117a   0x0800117a   0x00000010   Code   RO          386    i.LL_GPIO_SetPinOutputType  gpio.o
+    0x0800118a   0x0800118a   0x0000001a   Code   RO          387    i.LL_GPIO_SetPinPull  gpio.o
+    0x080011a4   0x080011a4   0x0000001c   Code   RO           72    i.LL_IOP_GRP1_EnableClock  main.o
+    0x080011c0   0x080011c0   0x00000014   Code   RO          285    i.SMG_Default       smg_task.o
+    0x080011d4   0x080011d4   0x000000e0   Code   RO          560    i.SMG_Init          smg_drivers.o
+    0x080012b4   0x080012b4   0x00000084   Code   RO          561    i.SMG_Scan          smg_drivers.o
+    0x08001338   0x08001338   0x00000030   Code   RO          286    i.SMG_Show          smg_task.o
+    0x08001368   0x08001368   0x0000003c   Code   RO          562    i.SMG_Sleep         smg_drivers.o
+    0x080013a4   0x080013a4   0x0000000c   Code   RO          563    i.SMG_Wake          smg_drivers.o
+    0x080013b0   0x080013b0   0x00000028   Code   RO           73    i.SysTick_Handler   main.o
+    0x080013d8   0x080013d8   0x00000170   Code   RO           74    i.SystemClockConfig  main.o
+    0x08001548   0x08001548   0x0000009c   Code   RO           13    i.SystemCoreClockUpdate  system_py32t020.o
+    0x080015e4   0x080015e4   0x00000030   Code   RO           14    i.SystemInit        system_py32t020.o
+    0x08001614   0x08001614   0x000001f0   Code   RO         1574    i.TK_CsdIdacTrim    Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08001804   0x08001804   0x00000090   Code   RO         1575    i.TK_CsdIdacTrimChs  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08001894   0x08001894   0x00000104   Code   RO         1576    i.TK_CsdIdacTrimLp  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08001998   0x08001998   0x000001e8   Code   RO         1735    i.TK_EnterStop      Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001b80   0x08001b80   0x0000005c   Code   RO         1736    i.TK_FilterInit     Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001bdc   0x08001bdc   0x000000d0   Code   RO         1737    i.TK_Filtering      Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001cac   0x08001cac   0x00000050   Code   RO         1738    i.TK_GetArea        Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001cfc   0x08001cfc   0x00000008   Code   RO         1739    i.TK_GetVersion     Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001d04   0x08001d04   0x00000008   Code   RO         1526    i.TK_IRQHandler     tk_user.o
+    0x08001d0c   0x08001d0c   0x000000e0   Code   RO         1740    i.TK_IRQHandlerCallback  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08001dec   0x08001dec   0x000004ec   Code   RO         1741    i.TK_Init           Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080022d8   0x080022d8   0x00000058   Code   RO         1577    i.TK_LPSenseStart   Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002330   0x08002330   0x0000003c   Code   RO         1579    i.TK_LibIRQHandler  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x0800236c   0x0800236c   0x00000238   Code   RO         1580    i.TK_LibInit        Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x080025a4   0x080025a4   0x00000084   Code   RO           75    i.TK_Loop           main.o
+    0x08002628   0x08002628   0x00000070   Code   RO         1581    i.TK_LpDeInit       Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002698   0x08002698   0x000000f8   Code   RO         1582    i.TK_LpInit         Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002790   0x08002790   0x00000128   Code   RO         1742    i.TK_MainFsm        Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080028b8   0x080028b8   0x0000004c   Code   RO         1743    i.TK_MultiChAcqNext  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002904   0x08002904   0x0000003c   Code   RO         1744    i.TK_MultiChAcqStart  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002940   0x08002940   0x00000018   Code   RO         1583    i.TK_RTC_EnterInitMode  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002958   0x08002958   0x00000018   Code   RO         1584    i.TK_RTC_ExitInitMode  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002970   0x08002970   0x00000018   Code   RO         1585    i.TK_RTC_WaitForSynchro  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002988   0x08002988   0x000000bc   Code   RO         1527    i.TK_RegisterCfg    tk_user.o
+    0x08002a44   0x08002a44   0x0000003c   Code   RO         1745    i.TK_SetAreaConfirmCNT  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002a80   0x08002a80   0x0000006c   Code   RO         1746    i.TK_SetBaseLineAll  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002aec   0x08002aec   0x00000044   Code   RO         1586    i.TK_SetLfsrw       Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002b30   0x08002b30   0x00000180   Code   RO         1587    i.TK_SetSenseStart  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08002cb0   0x08002cb0   0x00000084   Code   RO         1747    i.TK_TimerHandler   Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002d34   0x08002d34   0x00000090   Code   RO         1748    i.TK_UpdatBaseLineData  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08002dc4   0x08002dc4   0x00000240   Code   RO         1528    i.TK_UserParaInit   tk_user.o
+    0x08003004   0x08003004   0x000001c4   Code   RO         1749    i.TK_WinDetection   Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080031c8   0x080031c8   0x00000118   Code   RO         1588    i.Timer_RTC_Init    Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x080032e0   0x080032e0   0x0000001c   Code   RO          487    i.__ARM_common_switch8  gpio.o
+    0x080032fc   0x080032fc   0x00000020   Code   RO         1589    i.__NVIC_DisableIRQ  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x0800331c   0x0800331c   0x00000020   Code   RO          388    i.__NVIC_EnableIRQ  gpio.o
+    0x0800333c   0x0800333c   0x00000018   Code   RO         1590    i.__NVIC_EnableIRQ  Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08003354   0x08003354   0x00000078   Code   RO           76    i.__NVIC_SetPriority  main.o
+    0x080033cc   0x080033cc   0x00000078   Code   RO          389    i.__NVIC_SetPriority  gpio.o
+    0x08003444   0x08003444   0x00000078   Code   RO         1591    i.__RTC_DeInit      Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x080034bc   0x080034bc   0x0000000e   Code   RO         1922    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x080034ca   0x080034ca   0x00000002   Code   RO         1923    i.__scatterload_null  mc_p.l(handlers.o)
+    0x080034cc   0x080034cc   0x0000000e   Code   RO         1924    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x080034da   0x080034da   0x0000000c   Code   RO          212    i.app_drivers_init  drivers.o
+    0x080034e6   0x080034e6   0x00000002   PAD
+    0x080034e8   0x080034e8   0x00000014   Code   RO          213    i.app_drivers_loop  drivers.o
+    0x080034fc   0x080034fc   0x0000000c   Code   RO          214    i.app_drivers_timer  drivers.o
+    0x08003508   0x08003508   0x00000014   Code   RO         1592    i.gotosleep         Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x0800351c   0x0800351c   0x00000018   Code   RO           77    i.main              main.o
+    0x08003534   0x08003534   0x00000010   Code   RO         1593    i.nop_delay         Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08003544   0x08003544   0x00000080   Data   RO           15    .constdata          system_py32t020.o
+    0x080035c4   0x080035c4   0x00000035   Data   RO          287    .constdata          smg_task.o
+    0x080035f9   0x080035f9   0x00000003   PAD
+    0x080035fc   0x080035fc   0x000000d0   Data   RO          390    .constdata          gpio.o
+    0x080036cc   0x080036cc   0x00000030   Data   RO          564    .constdata          smg_drivers.o
+    0x080036fc   0x080036fc   0x000000a6   Data   RO         1530    .constdata          tk_user.o
+    0x080037a2   0x080037a2   0x00000002   PAD
+    0x080037a4   0x080037a4   0x000000f0   Data   RO         1595    .constdata          Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x08003894   0x08003894   0x00000004   Data   RO         1753    .constdata          Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x08003898   0x08003898   0x00000020   Data   RO         1754    .constdata          Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x080038b8   0x080038b8   0x00000020   Data   RO         1920    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080038d8, Size: 0x00000698, Max: 0x00001000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x080038d8   0x00000034   Data   RW         1751    .ARM.__AT_0x20000000  Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x20000034   0x0800390c   0x00000004   Data   RW           16    .data               system_py32t020.o
+    0x20000038   0x08003910   0x00000006   Data   RW           79    .data               main.o
+    0x2000003e   0x08003916   0x00000002   PAD
+    0x20000040   0x08003918   0x00000004   Data   RW          219    .data               drivers.o
+    0x20000044   0x0800391c   0x00000004   Data   RW          391    .data               gpio.o
+    0x20000048   0x08003920   0x00000005   Data   RW          565    .data               smg_drivers.o
+    0x2000004d   0x08003925   0x00000001   Data   RW          606    .data               beep_drivers.o
+    0x2000004e   0x08003926   0x00000002   PAD
+    0x20000050   0x08003928   0x00000010   Data   RW         1596    .data               Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x20000060   0x08003938   0x00000048   Data   RW         1755    .data               Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x200000a8        -       0x00000160   Zero   RW         1529    .bss                tk_user.o
+    0x20000208        -       0x0000008a   Zero   RW         1594    .bss                Py32t020xx_sample_V1.2.13.lib(py32t020_tk.o)
+    0x20000292   0x08003980   0x00000002   PAD
+    0x20000294        -       0x00000204   Zero   RW         1752    .bss                Py32t020xx_sample_V1.2.13.lib(tk_lib.o)
+    0x20000498        -       0x00000200   Zero   RW            1    STACK               startup_py32t020xx.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        84         14          0          1          0       1821   beep_drivers.o
+        88          8          0          4          0       2656   drivers.o
+      1340        100        208          4          0      25594   gpio.o
+       712         64          0          6          0      52337   main.o
+       428         70         48          5          0       2996   smg_drivers.o
+       112         24         53          0          0       2272   smg_task.o
+        28          8        192          0        512        632   startup_py32t020xx.o
+       232         40        128          4          0     168556   system_py32t020.o
+       876        106        166          0        352       4891   tk_user.o
+
+    ----------------------------------------------------------------------
+      3902        434        832         28        864     261755   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+         2          0          5          4          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+      2992        214        240         16        138     184784   py32t020_tk.o
+      5746        366         36        124        516      30678   tk_lib.o
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        40          0          0          0          0         72   idiv.o
+        36          8          0          0          0         68   init.o
+         0          0          0          0          0          0   iusefp.o
+        44          0          0          0          0         72   uidiv.o
+       178          0          0          0          0        108   fadd.o
+       124          0          0          0          0         72   fdiv.o
+       130          0          0          0          0        144   fepilogue.o
+        40          0          0          0          0         60   ffixui.o
+        22          0          0          0          0         68   fflti.o
+        14          0          0          0          0         68   ffltui.o
+       122          0          0          0          0         72   fmul.o
+
+    ----------------------------------------------------------------------
+      9542        596        276        140        656     216266   Library Totals
+         4          0          0          0          2          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      8738        580        276        140        654     215462   Py32t020xx_sample_V1.2.13.lib
+       170         16          0          0          0        212   mc_p.l
+       630          0          0          0          0        592   mf_p.l
+
+    ----------------------------------------------------------------------
+      9542        596        276        140        656     216266   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+     13444       1030       1108        168       1520     474169   Grand Totals
+     13444       1030       1108        168       1520     474169   ELF Image Totals
+     13444       1030       1108        168          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                14552 (  14.21kB)
+    Total RW  Size (RW Data + ZI Data)              1688 (   1.65kB)
+    Total ROM Size (Code + RO Data + RW Data)      14720 (  14.38kB)
+
+==============================================================================
+

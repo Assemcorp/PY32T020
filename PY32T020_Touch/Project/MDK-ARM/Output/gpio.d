@@ -1,0 +1,13 @@
+.\output\gpio.o: ..\..\app_drivers\src\gpio.c
+.\output\gpio.o: ..\..\app_drivers\inc\gpio.h
+.\output\gpio.o: ..\..\Drivers\PY32T020_HAL_Driver\Inc\py32t020_ll_gpio.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t0xx.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t020x6.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Include\core_cm0plus.h
+.\output\gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\system_py32t0xx.h
+.\output\gpio.o: ..\..\Drivers\PY32T020_HAL_Driver\Inc\py32t020_ll_exti.h
+.\output\gpio.o: ..\..\Drivers\CMSIS\Device\PY32T020\Include\py32t0xx.h
