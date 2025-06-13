@@ -1,1 +1,4 @@
-在app_config.h中开启需要的外设模块，详细看app_config.h内的说明
+Enable the required peripheral modules in app_config.h; 
+refer to the comments inside the file for detailed instructions.
+
+AssemCorp
