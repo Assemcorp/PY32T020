@@ -1,7 +1,7 @@
 #ifndef _TK_CFG_USER_H
 #define _TK_CFG_USER_H
 
-//按键触摸通道定义，按KEY的顺序填写，未用到的按键必须定义为TK_CH_NONE
+// Touch key channel definition, fill in order of KEY, define unused keys as TK_CH_NONE
 #define CH_KEY0			TK_CH17
 #define CH_KEY1			TK_CH15
 #define CH_KEY2			TK_CH11
@@ -29,10 +29,7 @@
 #define CH_KEY24		TK_CH_NONE
 #define CH_KEY25		TK_CH_NONE
 //--------------------------------------------------------------
-
-
-//--------------------------------------------------------------
-//按键触发门限值定义
+// Touch Key Threshold Settings
 #define KEY0_THD        100
 #define KEY1_THD        100
 #define KEY2_THD        100
@@ -60,22 +57,22 @@
 #define KEY24_THD		40
 #define KEY25_THD		40
 //==============================================================
-#define WATER_PROOF_EN			0			/*	1: 防水功能使能	 0：防水功能关闭   */
-#define WATER_SHIELD_CH			TK_CH_NONE	/*	Shield通道号  */
-#define WATER_PROOF_MODE		0			/*	0：有水状态下按键正常触发	1：有水状态下屏蔽按键 */
-#define WATER_RATIO_0			15			/*	有水按键判断门限值	*/
-#define WATER_RATIO_1			45			/*	水流判断门限值		*/
-#define DUSTERCLOTH_EN			0			/*	1：防湿抹布功能开启		0：防湿抹布功能关闭*/
-#define DUSTERCLOTH_THD			250			/*	湿抹布判断门限值	*/
+#define WATER_PROOF_EN			0			/*  1: Enable, 0: Disable   */
+#define WATER_SHIELD_CH			TK_CH_NONE	/*  Shield channel  */
+#define WATER_PROOF_MODE		0			/*  0: Mode 0, 1: Mode 1 */
+#define WATER_RATIO_0			15			/*  Water ratio 0   */
+#define WATER_RATIO_1			45			/*  Water ratio 1       */
+#define DUSTERCLOTH_EN			0			/*  1: Enable, 0: Disable */
+#define DUSTERCLOTH_THD			250			/*  Duster cloth threshold  */
 
-#define HIGH_SENSITVITY_EN		0			/*	1：高灵敏度模式开启	0：高灵敏度模式关闭 */
-#define SENSITVITY_SHIELD_CH	TK_CH_NONE		/* Shield通道号	*/
+#define HIGH_SENSITVITY_EN		0			/*  1: Enable, 0: Disable */
+#define SENSITVITY_SHIELD_CH	TK_CH_NONE		/* Shield channel   */
 
 //==============================================================
-#define SLIDER_OR_WHEEL0_TYPE			TK_APP_NONE			//滑条类型
-#define SLIDER_OR_WHEEL0_RESOLUTION		100					//滑条分辨率
-#define SLIDER_OR_WHEEL0_THD			80					//滑条门限值
-#define SLIDER_OR_WHEEL0_CH0			TK_CH4				//滑条通道，按顺序填写
+#define SLIDER_OR_WHEEL0_TYPE			TK_APP_NONE			// Type
+#define SLIDER_OR_WHEEL0_RESOLUTION		100					// Resolution
+#define SLIDER_OR_WHEEL0_THD			80					// Threshold
+#define SLIDER_OR_WHEEL0_CH0			TK_CH4				// Channel 0
 #define SLIDER_OR_WHEEL0_CH1			TK_CH8				
 #define SLIDER_OR_WHEEL0_CH2			TK_CH5
 #define SLIDER_OR_WHEEL0_CH3			TK_CH6
@@ -84,10 +81,10 @@
 #define SLIDER_OR_WHEEL0_CH6			TK_CH_NONE
 #define SLIDER_OR_WHEEL0_CH7			TK_CH_NONE
 
-#define SLIDER_OR_WHEEL1_TYPE			TK_APP_NONE
-#define SLIDER_OR_WHEEL1_RESOLUTION		255
-#define SLIDER_OR_WHEEL1_THD			450
-#define SLIDER_OR_WHEEL1_CH0			TK_CH19
+#define SLIDER_OR_WHEEL1_TYPE			TK_APP_NONE			// Type
+#define SLIDER_OR_WHEEL1_RESOLUTION		255					// Resolution
+#define SLIDER_OR_WHEEL1_THD			450					// Threshold
+#define SLIDER_OR_WHEEL1_CH0			TK_CH19				// Channel 0
 #define SLIDER_OR_WHEEL1_CH1			TK_CH23
 #define SLIDER_OR_WHEEL1_CH2			TK_CH24
 #define SLIDER_OR_WHEEL1_CH3			TK_CH25
@@ -96,10 +93,10 @@
 #define SLIDER_OR_WHEEL1_CH6			TK_CH_NONE
 #define SLIDER_OR_WHEEL1_CH7			TK_CH_NONE
 
-#define SLIDER_OR_WHEEL2_TYPE			TK_APP_NONE
-#define SLIDER_OR_WHEEL2_RESOLUTION		255
-#define SLIDER_OR_WHEEL2_THD			80
-#define SLIDER_OR_WHEEL2_CH0			TK_CH_NONE
+#define SLIDER_OR_WHEEL2_TYPE			TK_APP_NONE			// Type
+#define SLIDER_OR_WHEEL2_RESOLUTION		255					// Resolution
+#define SLIDER_OR_WHEEL2_THD			80					// Threshold
+#define SLIDER_OR_WHEEL2_CH0			TK_CH_NONE			// Channel 0
 #define SLIDER_OR_WHEEL2_CH1			TK_CH_NONE
 #define SLIDER_OR_WHEEL2_CH2			TK_CH_NONE
 #define SLIDER_OR_WHEEL2_CH3			TK_CH_NONE
@@ -108,10 +105,10 @@
 #define SLIDER_OR_WHEEL2_CH6			TK_CH_NONE
 #define SLIDER_OR_WHEEL2_CH7			TK_CH_NONE
 
-#define SLIDER_OR_WHEEL3_TYPE			TK_APP_NONE
-#define SLIDER_OR_WHEEL3_RESOLUTION		255
-#define SLIDER_OR_WHEEL3_THD			80
-#define SLIDER_OR_WHEEL3_CH0			TK_CH_NONE
+#define SLIDER_OR_WHEEL3_TYPE			TK_APP_NONE			// Type
+#define SLIDER_OR_WHEEL3_RESOLUTION		255					// Resolution
+#define SLIDER_OR_WHEEL3_THD			80					// Threshold
+#define SLIDER_OR_WHEEL3_CH0			TK_CH_NONE			// Channel 0
 #define SLIDER_OR_WHEEL3_CH1			TK_CH_NONE
 #define SLIDER_OR_WHEEL3_CH2			TK_CH_NONE
 #define SLIDER_OR_WHEEL3_CH3			TK_CH_NONE
