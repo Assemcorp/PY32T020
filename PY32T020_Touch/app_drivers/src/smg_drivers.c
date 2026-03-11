@@ -7,10 +7,10 @@
  * @attention
  *
  * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
- * All rights reserved.</center></h2>
+ * All rights reserved.
  *
- * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
- * All rights reserved.</center></h2>
+ * Copyright (c) 2016 STMicroelectronics.
+ * All rights reserved.
  *
  * This software component is licensed by ST under BSD 3-Clause license,
  * the "License"; You may not use this file except in compliance with the
@@ -26,17 +26,16 @@ static uint8_t smg_run;
 static uint8_t smg_com;
 uint8_t smg_data[COM_COUNT];
 /**
- * @brief 数码管IO
+ * @brief  Segment and Common GPIO definitions
  */
 const uint8_t SEG_PIN[8] = {	SEG0_GPIO_PIN, SEG1_GPIO_PIN, SEG2_GPIO_PIN, SEG3_GPIO_PIN, 
 								SEG4_GPIO_PIN, SEG5_GPIO_PIN, SEG6_GPIO_PIN, SEG7_GPIO_PIN};
 const uint8_t COM_PIN[5] = {	COM0_GPIO_PIN, COM1_GPIO_PIN, COM2_GPIO_PIN, COM3_GPIO_PIN, COM4_GPIO_PIN};
-/********************************************************
-**	函数名	void SMG_Init(void)
-**	描述	数码管IO口初始化，
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize 7-segment display GPIOs
+ * @param  None
+ * @retval None
+ */
 void SMG_Init(void)
 {
     uint8_t i;
@@ -65,12 +64,11 @@ void SMG_Init(void)
 	SMG_Default();
     smg_run = 1;
 }
-/********************************************************
-**	函数名	void SMG_Sleep(void)
-**	描述	数码管休眠，设置IO口状态
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Enter sleep mode, recover IO state for 7-segment display
+ * @param  None
+ * @retval None
+ */
 void SMG_Sleep(void)
 {
 	uint8_t i;
@@ -81,22 +79,20 @@ void SMG_Sleep(void)
 		GPIO_ClearBit(SEG_PIN[i]);
     }
 }
-/********************************************************
-**	函数名	void SMG_Wake(void)
-**	描述	数码管退出休眠，继续显示
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Wake up 7-segment display from sleep, restore display
+ * @param  None
+ * @retval None
+ */
 void SMG_Wake(void)
 {
 	smg_run = 1;
 }
-/********************************************************
-**	函数名	void SMG_Scan(void)
-**	描述	数码管扫描
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  7-segment display scanning function
+ * @param  None
+ * @retval None
+ */
 void SMG_Scan(void)
 {
     uint8_t data, i;

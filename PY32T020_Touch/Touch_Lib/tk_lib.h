@@ -73,20 +73,20 @@ typedef enum
 #pragma pack(4)
 typedef struct
 {
-    TSState_TypeDef TK_state;				// 触摸状态
-    uint8_t TouchKeyChCnt; 					// 按键数量	
-    uint8_t SleepEn;						// 休眠使能
-    uint8_t KeyOutTimeLimitEn;				// 长按超时使能
-    uint16_t SleepTime;						// 休眠计数值
-    uint32_t KeyFlags;						// 用户按键标志
-    uint32_t KeyFlagsPending;				// 触摸库按键标志
-    uint32_t TK_KeyEnable;					// 使能触摸通道号
-    uint16_t KeyOutTimeLimitCNT;			// 长按超时时间
-	uint8_t TK_Config;						// 库配置项
-	uint8_t MultiKeyCnt;					// 复位按键数
-	uint8_t Lib_function;					//触摸功能
+    TSState_TypeDef TK_state;				// Touch state
+    uint8_t TouchKeyChCnt; 					// Number of keys	
+    uint8_t SleepEn;						// Sleep enable
+    uint8_t KeyOutTimeLimitEn;				// Long-press timeout enable
+    uint16_t SleepTime;						// Sleep counter value
+    uint32_t KeyFlags;						// User key flags
+    uint32_t KeyFlagsPending;				// Touch library key flags
+    uint32_t TK_KeyEnable;					// Enabled touch channel bitmap
+    uint16_t KeyOutTimeLimitCNT;			// Long-press timeout duration
+	uint8_t TK_Config;						// Library configuration flags
+	uint8_t MultiKeyCnt;					// Multi-key reset count
+	uint8_t Lib_function;					//Touch function mode
 #if (LIB_TYPE > 0)
-	int16_t SliderOrWheelPosition[SLIDER_MAX]; // 滑条位置
+	int16_t SliderOrWheelPosition[SLIDER_MAX]; // Slider/wheel position
 #endif
 } TKMainCtr_TypeDef;
 #pragma pack()
@@ -94,8 +94,8 @@ typedef struct
 #pragma pack(4)
 typedef struct
 {
-    uint8_t TouchAcqChCnt;  				// 扫描通道总数量，包含防水以及滑环
-    uint8_t *TouchKeyChSeq; 				// 通道号
+    uint8_t TouchAcqChCnt;  				// Total scan channel count (including waterproof & slider channels)
+    uint8_t *TouchKeyChSeq; 				// Channel index array
 } TouchKeyChInfor_TypeDef;
 #pragma pack()
 
@@ -103,12 +103,12 @@ typedef struct
 typedef struct
 {
 	#if (LIB_TYPE > 0)
-	uint8_t WheelSliderState;				//滑条状态0
-    uint8_t WheelSliderTouch;				//滑条状态1
-    uint8_t SliderWheelxStartChIdx[SLIDER_MAX];      //滑环启动坐标
-    uint8_t SliderWheelxChCnt[SLIDER_MAX];  //滑环通道数量
-    const uint8_t *SliderWheelType;			//滑条类型
-    const uint16_t *SliderWheelResloution;	//滑条分辨率
+	uint8_t WheelSliderState;				//Slider state 0
+    uint8_t WheelSliderTouch;				//Slider touch state 1
+    uint8_t SliderWheelxStartChIdx[SLIDER_MAX];      //Slider/wheel start channel index
+    uint8_t SliderWheelxChCnt[SLIDER_MAX];  //Slider/wheel channel count
+    const uint8_t *SliderWheelType;			//Slider type
+    const uint16_t *SliderWheelResloution;	//Slider resolution
 	#else
 	const uint8_t *SliderWheelType;
 	#endif
@@ -173,7 +173,7 @@ typedef struct
 #pragma pack(4)
 typedef struct
 {
-    uint8_t AvgModCNT;             // 滤波次数
+    uint8_t AvgModCNT;             // Filter count
 	uint8_t ExternalStartIdx;
 	int16_t NoiseTHD;
 } FilterCtr_TypeDef;
@@ -182,20 +182,20 @@ typedef struct
 #pragma pack(4)
 typedef struct
 {
-	uint8_t ShieldStartChIdx;    //屏蔽通道坐标
+	uint8_t ShieldStartChIdx;    //Shield channel start index
 	#if (LIB_TYPE > 1)
-	uint8_t Noise;				//屏蔽通道稳定
-	int16_t DusterClothDel;		//屏蔽通道变化量
-	int16_t trigger_ratio[2];	//屏蔽通道比例
+	uint8_t Noise;				//Shield channel stability flag
+	int16_t DusterClothDel;		//Shield channel delta value
+	int16_t trigger_ratio[2];	//Shield channel ratio
 	
 	uint8_t WaterProof_En;
-	uint8_t WaterProof_Chs;			//Shield通道号
-	int16_t WaterProof_Ratio0;		//水流判断门限值
-	int16_t WaterProof_Ratio1;		//覆水判断门限值
-	uint8_t WaterProof_Mode;		//1 有水状态屏蔽按键
+	uint8_t WaterProof_Chs;			//ShieldChannel index array
+	int16_t WaterProof_Ratio0;		//Water flow detection threshold
+	int16_t WaterProof_Ratio1;		//Water coverage detection threshold
+	uint8_t WaterProof_Mode;		//1: Mask keys when water is present
 	
-	uint8_t DusterCloth_En;			//1 防湿抹布功能开启
-	uint16_t DusterCloth_THD;		//湿抹布判断门限值
+	uint8_t DusterCloth_En;			//1: Enable wet-cloth detection
+	uint16_t DusterCloth_THD;		//Wet-cloth detection threshold
 	
 	uint8_t HighSensitvity_En;
 	uint8_t HighSensitvity_Chs;

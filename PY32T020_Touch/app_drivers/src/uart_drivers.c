@@ -1,12 +1,10 @@
 #include "uart_drivers.h"
 #if APP_UART_ENABLE
-/********************************************************
-**	函数名	uint8_t UART_QueueRead(SqQueue *Queue, uint8_t *data)
-**	描述	：用于读取UART队列中的数据
-**	传入	：Queue：队列指针 data：数据指针
-**	返回	：	0：数据为空
-				1：读取成功
-*********************************************************/
+/**
+ * @brief  UART_QueueRead
+ * @param  None
+ * @retval None
+ */
 static uint8_t UART_QueueRead(SqQueue *Queue, uint8_t *data)
 {
     if (Queue->rear == Queue->front)
@@ -17,13 +15,11 @@ static uint8_t UART_QueueRead(SqQueue *Queue, uint8_t *data)
     Queue->front = (Queue->front + 1) % Queue->sq_size;
     return 1;
 }
-/********************************************************
-**	函数名	uint8_t UART_QueueSend(UART_TypeDef *UARTx, SqQueue *Queue, uint8_t data)
-**	描述	：用于发送数据到UART队列中
-**	传入	：UARTx:串口指针		Queue：队列指针，当为空时使用阻塞发送 data：数据
-**	返回	：	0: 发送失败
-				1: 发送成功
-*********************************************************/
+/**
+ * @brief  UART_QueueSend
+ * @param  None
+ * @retval None
+ */
 static uint8_t UART_QueueSend(UART_TypeDef *UARTx, SqQueue *Queue, uint8_t data)
 {
     if (Queue == NULL)
@@ -34,33 +30,38 @@ static uint8_t UART_QueueSend(UART_TypeDef *UARTx, SqQueue *Queue, uint8_t data)
     }
     else
     {
-        /*	队列已满	,等待发送	*/
+        /**
+ * @brief  Documentation
+ */
         while (((Queue->rear + 1) % Queue->sq_size) == Queue->front)
         {
             ;
         }
         Queue->base[Queue->rear] = data;
         Queue->rear = (Queue->rear + 1) % Queue->sq_size;
-        /*	开启中断发送	*/
+        /**
+ * @brief  Documentation
+ */
         UARTx->CR2 |= UART_CR2_TDREIE;
     }
     return 1;
 }
-/********************************************************
-**	函数名	void UART_IRQHandler(UART_TypeDef *UARTx, SqQueue *Queue_rx, SqQueue *Queue_tx)
-**	描述	：UART中断回调函数
-**	传入	：UARTx:串口指针		Queue_rx：接收队列指针 Queue_tx：发送队列指针
-**	返回	：	无
-*********************************************************/
+/**
+ * @brief  UART_IRQHandler
+ * @param  None
+ * @retval None
+ */
 static void UART_IRQHandler(UART_TypeDef *UARTx, SqQueue *Queue_rx, SqQueue *Queue_tx)
 {
     uint32_t isrflags = UARTx->SR;
-    if (isrflags & UART_SR_RXNE && UARTx->CR2 & UART_CR2_RXNEIE) // 接收成功标志
+    if (isrflags & UART_SR_RXNE && UARTx->CR2 & UART_CR2_RXNEIE)
     {
-        uint8_t DATA = UARTx->DR; // 读取清中断标志
+        uint8_t DATA = UARTx->DR;
         if (((Queue_rx->rear + 1) % Queue_rx->sq_size) == Queue_rx->front)
         {
-            /*	队列已满		*/
+            /**
+ * @brief  Documentation
+ */
         }
         else
         {
@@ -68,24 +69,26 @@ static void UART_IRQHandler(UART_TypeDef *UARTx, SqQueue *Queue_rx, SqQueue *Que
             Queue_rx->rear = (Queue_rx->rear + 1) % Queue_rx->sq_size;
         }
     }
-    if (isrflags & UART_SR_TDRE && UARTx->CR2 & UART_CR2_TDREIE) // 发送完成中断
+    if (isrflags & UART_SR_TDRE && UARTx->CR2 & UART_CR2_TDREIE)
     {
-        /*	发送完成，关闭中断	*/
+        /**
+ * @brief  Documentation
+ */
         if (Queue_tx->rear == Queue_tx->front)
         {
             UARTx->CR2 &= ~UART_CR2_TDREIE;
         }
         else
         {
-			UARTx->DR = Queue_tx->base[Queue_tx->front]; // 写入DR清中断
+			UARTx->DR = Queue_tx->base[Queue_tx->front];
             Queue_tx->front = (Queue_tx->front + 1) % Queue_tx->sq_size;
         }
     }
-    if (isrflags & UART_SR_ORE) // 溢出中断
+    if (isrflags & UART_SR_ORE)
     {
         UARTx->SR |= UART_SR_ORE;
     }
-    if (isrflags & UART_SR_FE) // 帧错误中断
+    if (isrflags & UART_SR_FE)
     {
         UARTx->SR |= UART_SR_FE;
     }
@@ -99,15 +102,14 @@ static uint8_t uart1_tx_fifo[64];
 #if (UART1_RX_PIN != NO_PIN)
 static uint8_t uart1_rx_fifo[64];
 #endif
-#define UART1_SWAP						  0			/*	0： TX/RX pin 按照标准 pinout 定义；
-															1： TX/RX pin 互换。即TX作为接收，RX作为发送
-		*/
-/********************************************************
-**	函数名	void UART1_Init(uint32_t BaudRate)
-**	描述	：UART1初始化函数
-**	传入	：BaudRate 波特率
-**	返回	：	无
-*********************************************************/												
+#define UART1_SWAP						  0			/**
+ * @brief  Documentation
+ */
+/**
+ * @brief  UART1_Init
+ * @param  None
+ * @retval None
+ */												
 void UART1_Init(uint32_t BaudRate)
 {
 	/* Set UART feature */
@@ -147,12 +149,11 @@ void UART1_Init(uint32_t BaudRate)
 	NVIC_EnableIRQ(UART1_IRQn);
 	#endif
 }
-/********************************************************
-**	函数名	void UART1_IRQHandler(void)
-**	描述	：UART1中断入口
-**	传入	：无
-**	返回	：	无
-*********************************************************/	
+/**
+ * @brief  UART1_IRQHandler
+ * @param  None
+ * @retval None
+ */	
 void UART1_IRQHandler(void)
 {
 	__disable_irq();
@@ -160,21 +161,19 @@ void UART1_IRQHandler(void)
 	__enable_irq();
 }
 #if (UART1_RX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART1_QueueRead(uint8_t *data)
-**	描述	：UART1读取数据
-**	传入	：data：接收数据指针
-**	返回	：	0 数据为空
-				1 数据有效
-*********************************************************/	
+/**
+ * @brief  UART1_QueueRead
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART1_QueueRead(uint8_t *data)
 {
 	#if UART1_IRQ_ENABLE
 	return UART_QueueRead(&uart1_rx,data);
 	#else
-    if (UART1->SR & UART_SR_RXNE) // 接收成功标志
+    if (UART1->SR & UART_SR_RXNE)
     {
-        *data = UART1->DR; // 读取清中断标志
+        *data = UART1->DR;
 		return 1;
 	}
 	return 0;
@@ -182,13 +181,11 @@ uint8_t UART1_QueueRead(uint8_t *data)
 }
 #endif
 #if (UART1_TX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART1_QueueSend(uint8_t data)
-**	描述	：UART1发送数据
-**	传入	：data：发送的数据
-**	返回	：	0 发送失败
-				1 发送成功
-*********************************************************/	
+/**
+ * @brief  UART1_QueueSend
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART1_QueueSend(uint8_t data)
 {
 	#if UART1_IRQ_ENABLE
@@ -209,15 +206,14 @@ static uint8_t uart2_tx_fifo[64];
 #if (UART2_RX_PIN != NO_PIN)
 static uint8_t uart2_rx_fifo[64];
 #endif
-#define UART2_SWAP						  0			/*	0： TX/RX pin 按照标准 pinout 定义；
-															1： TX/RX pin 互换。即TX作为接收，RX作为发送
-														*/
-/********************************************************
-**	函数名	void UART2_Init(uint32_t BaudRate)
-**	描述	：UART2初始化函数
-**	传入	：BaudRate 波特率
-**	返回	：	无
-*********************************************************/	
+#define UART2_SWAP						  0			/**
+ * @brief  Documentation
+ */
+/**
+ * @brief  UART2_Init
+ * @param  None
+ * @retval None
+ */	
 void UART2_Init(uint32_t BaudRate)
 {
 	/* Set UART feature */
@@ -238,7 +234,9 @@ void UART2_Init(uint32_t BaudRate)
 	LL_UART_Init(UART2, &UART_InitStruct);
 	 /* Sends an amount of data in non blocking mode. */
 	UART2->CR1 |= (UART2_SWAP << 8);
-    /*	初始化串口队列	*/
+    /**
+ * @brief  Documentation
+ */
 	#if (UART2_TX_PIN != NO_PIN)
 	GPIO_Init(UART2_TX_PIN,ALTERNATE | PUSHPULL | GPIO_UART2);
     uart2_tx.base = uart2_tx_fifo;
@@ -258,12 +256,11 @@ void UART2_Init(uint32_t BaudRate)
 	NVIC_EnableIRQ(UART2_IRQn);
 	#endif
 }
-/********************************************************
-**	函数名	void UART2_IRQHandler(void)
-**	描述	：UART2中断入口
-**	传入	：无
-**	返回	：	无
-*********************************************************/	
+/**
+ * @brief  UART2_IRQHandler
+ * @param  None
+ * @retval None
+ */	
 void UART2_IRQHandler(void)
 {
 	__disable_irq();
@@ -271,21 +268,19 @@ void UART2_IRQHandler(void)
 	__enable_irq();
 }
 #if (UART2_RX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART2_QueueRead(uint8_t *data)
-**	描述	：UART2读取数据
-**	传入	：data：接收数据指针
-**	返回	：	0 数据为空
-				1 数据有效
-*********************************************************/	
+/**
+ * @brief  UART2_QueueRead
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART2_QueueRead(uint8_t *data)
 {
 	#if UART2_IRQ_ENABLE
 	return UART_QueueRead(&uart2_rx,data);
 	#else
-    if (UART2->SR & UART_SR_RXNE) // 接收成功标志
+    if (UART2->SR & UART_SR_RXNE)
     {
-        *data = UART2->DR; // 读取清中断标志
+        *data = UART2->DR;
 		return 1;
 	}
 	return 0;
@@ -293,13 +288,11 @@ uint8_t UART2_QueueRead(uint8_t *data)
 }
 #endif
 #if (UART2_TX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART2_QueueSend(uint8_t data)
-**	描述	：UART2发送数据
-**	传入	：data：发送的数据
-**	返回	：	0 发送失败
-				1 发送成功
-*********************************************************/	
+/**
+ * @brief  UART2_QueueSend
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART2_QueueSend(uint8_t data)
 {
 	#if UART2_IRQ_ENABLE
@@ -321,16 +314,15 @@ static uint8_t uart3_tx_fifo[64];
 static uint8_t uart3_rx_fifo[64];
 #endif
 
-#define UART3_SWAP						  0			/*	0： TX/RX pin 按照标准 pinout 定义；
-															1： TX/RX pin 互换。即TX作为接收，RX作为发送
-														*/
+#define UART3_SWAP						  0			/**
+ * @brief  Documentation
+ */
 
-/********************************************************
-**	函数名	void UART3_Init(uint32_t BaudRate)
-**	描述	：UART3初始化函数
-**	传入	：BaudRate 波特率
-**	返回	：	无
-*********************************************************/	
+/**
+ * @brief  UART3_Init
+ * @param  None
+ * @retval None
+ */	
 void UART3_Init(uint32_t BaudRate)
 {
 	/* Set UART feature */
@@ -351,7 +343,9 @@ void UART3_Init(uint32_t BaudRate)
 	LL_UART_Init(UART3, &UART_InitStruct);
 	/* Sends an amount of data in non blocking mode. */
 	UART3->CR1 |= (UART3_SWAP << 8);
-    /*	初始化串口队列	*/
+    /**
+ * @brief  Documentation
+ */
 	#if (UART3_TX_PIN != NO_PIN)
 	GPIO_Init(UART3_TX_PIN,ALTERNATE | PUSHPULL | GPIO_UART3);
     uart3_tx.base = uart3_tx_fifo;
@@ -371,12 +365,11 @@ void UART3_Init(uint32_t BaudRate)
 	NVIC_EnableIRQ(UART3_IRQn);
 	#endif
 }
-/********************************************************
-**	函数名	void UART3_IRQHandler(void)
-**	描述	：UART3中断入口
-**	传入	：无
-**	返回	：	无
-*********************************************************/	
+/**
+ * @brief  UART3_IRQHandler
+ * @param  None
+ * @retval None
+ */	
 void UART3_IRQHandler(void)
 {
 	__disable_irq();
@@ -384,21 +377,19 @@ void UART3_IRQHandler(void)
 	__enable_irq();
 }
 #if (UART3_RX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART3_QueueRead(uint8_t *data)
-**	描述	：UART3读取数据
-**	传入	：data：接收数据指针
-**	返回	：	0 数据为空
-				1 数据有效
-*********************************************************/	
+/**
+ * @brief  UART3_QueueRead
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART3_QueueRead(uint8_t *data)
 {
 	#if UART3_IRQ_ENABLE
 	return UART_QueueRead(&uart3_rx,data);
 	#else
-    if (UART3->SR & UART_SR_RXNE) // 接收成功标志
+    if (UART3->SR & UART_SR_RXNE)
     {
-        *data = UART3->DR; // 读取清中断标志
+        *data = UART3->DR;
 		return 1;
 	}
 	return 0;
@@ -406,13 +397,11 @@ uint8_t UART3_QueueRead(uint8_t *data)
 }
 #endif
 #if (UART3_TX_PIN != NO_PIN)
-/********************************************************
-**	函数名	uint8_t UART3_QueueSend(uint8_t data)
-**	描述	：UART3发送数据
-**	传入	：data：发送的数据
-**	返回	：	0 发送失败
-				1 发送成功
-*********************************************************/	
+/**
+ * @brief  UART3_QueueSend
+ * @param  None
+ * @retval None
+ */	
 uint8_t UART3_QueueSend(uint8_t data)
 {
 	#if UART3_IRQ_ENABLE

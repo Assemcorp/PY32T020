@@ -180,7 +180,9 @@ void argb_serive(uint8_t whlelhold, uint8_t sliderhold)
         b = argb[i].dim * b / 255;
         SPI_LED_RgbLoad(i, r, g, b);
     }
-    /*	¿ª»ú×Ô¼ì		*/
+    /**
+ * @brief  Documentation
+ */
     if (argb_start < SPI_LED_CNT)
     {
         start_delay++;

@@ -81,7 +81,7 @@ char log_string[64];
 static uint8_t Rtc_Wake;
 #endif
 /**
- * @brief  TK用户参数初始化
+ * @brief  TK user parameter initialization
  * @param  None
  * @retval None
  */
@@ -104,28 +104,28 @@ void TK_UserParaInit(void)
     LibVersion.word = TK_GetVersion();
     if (LibVersion.byte.VERSION_TYPE != LIB_TYPE)
     {
-        /*	库版本跟定义版本不一致*/
+        /*	Library version mismatch with defined version*/
         while (1)
         {
             ;
         }
     }
-    TKCtr.KeyOutTimeLimitCNT = KEY_OUT_MAX_TICK_CNT; // 长按超时时间，单位5ms
+    TKCtr.KeyOutTimeLimitCNT = KEY_OUT_MAX_TICK_CNT; // Long-press timeout duration, unit: 5ms
     TKCtr.TK_Config = 0;
-    TK_Info.pTkAreaInfor->FingerAreaConfirmTickCNT = FINGER_CONFIRM_TICK_CNT;            // 按键从0->1滤波次数
-    TK_Info.pTkAreaInfor->FingerReleaseConfirmTickCNT = FINGER_RELEASE_CONFIRM_TICK_CNT; // 按键从1->0滤波次数
+    TK_Info.pTkAreaInfor->FingerAreaConfirmTickCNT = FINGER_CONFIRM_TICK_CNT;            // Key press (0->1) filter count
+    TK_Info.pTkAreaInfor->FingerReleaseConfirmTickCNT = FINGER_RELEASE_CONFIRM_TICK_CNT; // Key release (1->0) filter count
     TK_Info.pTkAreaInfor->WaterAreaConfirmTickCNT = WATER_AREA_CONFIRM_TICK_CNT;
     TK_Info.pTkAreaInfor->NoiseAreaConfirmTickCNT = NOISE_AREA_CONFIRM_TICK_CNT;
     TK_Info.pTkAreaInfor->BottonAreaConfirmTickCNT = BOTTON_AREA_CONFIRM_TICK_CNT;
-    FilterCtr.AvgModCNT = FILTERCOUNT; // 设置滤波次数
+    FilterCtr.AvgModCNT = FILTERCOUNT; // Set filter count
     FilterCtr.NoiseTHD = NOISE_THD_DEFAULT;
-    /*	回调函数初始化	*/
+    /*	Callback function initialization	*/
 #if TK_SLEEP
     TK_Handle.EnterStopCallback = EnterStop_Callback;
     TK_Handle.ExitStopCallback = ExitStop_Callback;
 #endif
     TK_Handle.TouchKeyFlagsMask = APP_TouchKeyFlagsMask;
-    /*	数据指针设置		*/
+    /*	Data pointer setup		*/
     TK_Info.pTouchKeyDatas->BaseLineData = TK_Mem.BaseLineData;
     TK_Info.pTouchKeyDatas->BaseLineDataDBG = TK_Mem.BaseLineDataDBG;
     TK_Info.pTouchKeyDatas->Differ = TK_Mem.Differ;
@@ -150,7 +150,7 @@ void TK_UserParaInit(void)
     TK_Info.pTouchKeyDatas->SingleBaseLineData = TK_Mem.SingleBaseLineData;
     TK_Info.pTK_DataBuf->SingleAcqRawDatasBuf = TK_Mem.SingleAcqRawDatasBuf;
 #endif
-    /*	初始化按键通道	*/
+    /*	Initialize key channels	*/
     TKCtr.TouchKeyChCnt = KEY_CH_TOTAL;
     for (offset = 0; offset < TKCtr.TouchKeyChCnt; offset++)
     {
@@ -158,7 +158,7 @@ void TK_UserParaInit(void)
         TK_Info.pTouchKeyDatas->FingerTHD[offset] = KEY_THD_TAB[offset];
     }
 #if (LIB_TYPE > 0)
-    /*	初始化滑轮通道	*/
+    /*	Initialize slider/wheel channels	*/
     TK_Info.pSliderChInfor->SliderWheelType = SLIDERORWHEEL_TYPE_TAB;
     TK_Info.pSliderChInfor->SliderWheelResloution = SLIDERORWHEEL_RESOLUTION_TAB;
     for (k = 0; k < SLIDER_MAX; k++)
@@ -199,8 +199,8 @@ void TK_UserParaInit(void)
         ShieldInfor.WaterProof_Ratio1 = WATER_RATIO_1;
         ShieldInfor.DusterCloth_En = DUSTERCLOTH_EN;
         ShieldInfor.DusterCloth_THD = DUSTERCLOTH_THD;
-        ShieldInfor.Noise = 3; // 保护通道数据变化量在 -NoiseTHD ~ +NoiseTHD范围之间认为数据平稳
-        /*	设置通道		*/
+        ShieldInfor.Noise = 3; // Shield channel data variation within -NoiseTHD ~ +NoiseTHD range is considered stable
+        /*	Set channel		*/
         ShieldInfor.ShieldStartChIdx = offset;
         TK_Info.pTouchKeyChInfor->TouchKeyChSeq[offset] = SHIELD_CHS;
         TK_Info.pTouchKeyDatas->FingerTHD[offset] = NOISE_THD_DEFAULT << 1;
@@ -211,7 +211,7 @@ void TK_UserParaInit(void)
         ShieldInfor.HighSensitvity_Chs = SENSITVITY_SHIELD_CH;
         if (ShieldInfor.HighSensitvity_Chs != TK_CH_NONE)
         {
-            /*	设置通道		*/
+            /*	Set channel		*/
             ShieldInfor.ShieldStartChIdx = offset;
             TK_Info.pTouchKeyChInfor->TouchKeyChSeq[offset] = SHIELD_CHS;
             TK_Info.pTouchKeyDatas->FingerTHD[offset] = NOISE_THD_DEFAULT;
@@ -231,18 +231,18 @@ void TK_UserParaInit(void)
     FilterCtr.ExternalStartIdx = TK_CH_NONE;
 #endif
     TKCtr.MultiKeyCnt = MAX_TRIGGER_KEY_CNT;
-    /*	触摸扫描总数量	*/
+    /*	Total touch scan channel count	*/
     TK_Info.pTouchKeyChInfor->TouchAcqChCnt = TK_CHMAX;
 }
 /**
- * @brief  TK寄存器初始化
+ * @brief  TK register initialization
  * @param  None
  * @retval None
  */
 void TK_RegisterCfg(void)
 {
-#define st_clk 2 // ST时钟为2M，则2个计数为1us
-    /*	触摸基本配置初始化	*/
+#define st_clk 2 // ST clock is 2MHz, so 2 counts = 1us
+    /*	Touch basic configuration initialization	*/
     if (SystemCoreClock == 48000000l)
     {
         TK_Handle.Init.Div = TK_DIV2;      // 48M/2 = 24M
@@ -285,9 +285,9 @@ void TK_RegisterCfg(void)
         TK_Handle.Init.TrimRatio[0] = 70;
         TK_Handle.Init.TrimRatio[1] = 75;
     }
-/*	低功耗初始化	*/
+/*	Low power mode initialization	*/
 #if (SLEEP_EN && TK_SLEEP)
-    TKCtr.SleepEn = 1; // 允许休眠
+    TKCtr.SleepEn = 1; // Enable sleep mode
     TK_Handle.Lp.EnterStopTimer = ENTER_SLEEPTIME;
     TK_Handle.Lp.LpWin = CONFIG_LP_WIN;
     TK_Handle.Lp.LpKchs = TKCtr.TK_KeyEnable;
@@ -295,13 +295,13 @@ void TK_RegisterCfg(void)
     TK_Handle.Lp.Vref = CONFIG_LPVREF;
     TK_Handle.Lp.LpWakeTime = LP_WAUP_TIME;
 #else
-    TKCtr.SleepEn = 0; // 禁止休眠
+    TKCtr.SleepEn = 0; // Disable sleep mode
 #endif
     TKCtr.SleepTime = 0;
     TK_LibInit();
 }
 /**
- * @brief 触摸单通道扫描完成中断
+ * @brief Touch single-channel scan complete interrupt
  */
 void TK_IRQHandler(void)
 {
@@ -309,7 +309,7 @@ void TK_IRQHandler(void)
 }
 #if (SLEEP_EN && TK_SLEEP)
 /**
- * @brief RTC中断
+ * @brief RTC interrupt
  */
 void RTC_IRQHandler(void)
 {
@@ -317,14 +317,14 @@ void RTC_IRQHandler(void)
     {
         /* Clear sec flag */
         LL_RTC_ClearFlag_SEC(RTC);
-        /*	如果触摸休眠前使能秒中断，则会进入这里，进入时间为TK_Handle.Lp.LpWakeTime	*/
+        /*	If second interrupt is enabled before sleep, this will trigger at interval TK_Handle.Lp.LpWakeTime	*/
         Rtc_Wake |= 0X01;
     }
     if (LL_RTC_IsActiveFlag_ALR(RTC) != 0)
     {
         /* Clear alarm flag */
         LL_RTC_ClearFlag_ALR(RTC);
-        /*	如果触摸休眠前使能闹钟中断，则会进入这里，进入时间为TK_Handle.Lp.LpWakeTime * (TK_Handle.Lp.Alarm_tick + 1)
+        /*	If alarm interrupt is enabled before sleep, this will trigger at interval TK_Handle.Lp.LpWakeTime * (TK_Handle.Lp.Alarm_tick + 1)
          */
         Rtc_Wake |= 0X02;
     }
@@ -332,7 +332,7 @@ void RTC_IRQHandler(void)
 #endif
 #if TK_SLEEP
 /**
- * @brief 进入休眠调用函数
+ * @brief Callback function called when entering sleep mode
  * @param  None
  * @retval None
  */
@@ -344,14 +344,14 @@ static void EnterStop_Callback(void)
     Rtc_Wake = 0;
 #endif
     EXTI_Flag = 0;
-/*	低功耗初始化	*/
+/*	Low power mode initialization	*/
 #if (SLEEP_EN && TK_SLEEP)
-    TK_Handle.Lp.SleepTouchThd = LP_NORMRMALDELTA; // 设置省电模式门限值
-    TK_Handle.Lp.RtcInt = 0;//RTC_CRH_ALRIE;                       // RTC_CRH_ALRIE;          // 需要使能的RTC中断
-    TK_Handle.Lp.Alarm_tick = 10; 				   // 使能闹钟中断后定时唤醒MCU的时间
+    TK_Handle.Lp.SleepTouchThd = LP_NORMRMALDELTA; // Set low-power mode threshold value
+    TK_Handle.Lp.RtcInt = 0;//RTC_CRH_ALRIE;                       // RTC_CRH_ALRIE;          // RTC interrupt to enable
+    TK_Handle.Lp.Alarm_tick = 10; 				   // Periodic MCU wake-up time when alarm interrupt is enabled
 #endif
 #if APP_ADC_ENABLE
-    /*	等待序列转换完成*/
+    /*	Wait for ADC sequence conversion to complete*/
     while (LL_ADC_REG_IsConversionOngoing(ADC1) == 1)
     {
         ;
@@ -369,25 +369,25 @@ static void EnterStop_Callback(void)
 #endif
 }
 /**
- * @brief 退出休眠调用函数
+ * @brief Callback function called when exiting sleep mode
  * @param  None
  * @retval None
  */
 static void ExitStop_Callback(void)
 {
-    /*	触摸唤醒		*/
+    /*	Touch wakeup		*/
     if (TK_Handle.Lp.WakeChs != 0)
     {
         TKCtr.SleepTime = 0;
     }
 #if (SLEEP_EN && TK_SLEEP)
-    /*	RTC唤醒标志位	*/
+    /*	RTC wakeup flag	*/
     if (Rtc_Wake != 0)
     {
 		
     }
 #endif
-    /*	外部中断唤醒标志位	*/
+    /*	External interrupt wakeup flag	*/
     if (EXTI_Flag != 0)
     {
         TKCtr.SleepTime = 0;
@@ -399,17 +399,17 @@ static void ExitStop_Callback(void)
     ADC_Init();
 #endif
 #if APP_TIM1_ENABLE
-    /*	定时器1初始化	*/
+    /*	Timer 1 initialization	*/
     TIM1_Init();
 #elif APP_TIM1_PWM_ENABLE
-    /*	定时器1用做PWM输出初始化	*/
+    /*	Timer 1 PWM output initialization	*/
     TIM1_PWM_Init();
 #endif
 #if APP_TIM14_ENABLE
-    /*	定时器14初始化	*/
+    /*	Timer 14 initialization	*/
     TIM14_Init();
 #elif APP_TIM14_PWM_ENABLE
-    /*	定时器14用做PWM输出初始化	*/
+    /*	Timer 14 PWM output initialization	*/
     TIM14_PWM_Init();
 #endif
     /* Enable SysTick Interrupt */
@@ -418,38 +418,38 @@ static void ExitStop_Callback(void)
 #endif
 #if (LIB_TYPE > 1)
 /**
- * @brief 触摸防水处理，
+ * @brief Touch waterproofing handler,
  * @param  	GuardBaseLineData		GuardeAcqData
- * @retval 	1：有水
-            0：无水
+ * @retval 	1: Water detected
+            0: No water
  */
 static uint8_t APP_TouchShieldFlagsMask(uint8_t chs, uint16_t BaseLineData, uint16_t AcqData)
 {
     ShieldInfor.DusterClothDel = AcqData - BaseLineData;
-    log_printf("ShieldDiffer:%d\r\n", ShieldInfor.DusterClothDel); // 获取保护通道的数据变化量
+    log_printf("ShieldDiffer:%d\r\n", ShieldInfor.DusterClothDel); // Get the data variation of the shield channel
     if (ShieldInfor.WaterProof_En == 1 && ShieldInfor.DusterCloth_En == 1)
     {
-        if (ShieldInfor.DusterClothDel > ShieldInfor.DusterCloth_THD) // 检测到有水，返回1，屏蔽按键
+        if (ShieldInfor.DusterClothDel > ShieldInfor.DusterCloth_THD) // Water detected, return 1 to mask the key
             return 1;
     }
     return 0;
 }
 /**
- * @brief 触摸防水处理，
- * @param  	Differ：正常采集值		DifferSigle：特殊采集值
- * @retval 	0：正常触摸
-            1：有水流事件
-            2：有水时按键触发
+ * @brief Touch waterproofing handler,
+ * @param  	Differ: Normal sampling value		DifferSigle: Special sampling value
+ * @retval 	0: Normal touch
+            1: Water flow event
+            2: Key trigger while water is present
 
  */
 static uint8_t APP_TouchWaterFlagsMask(uint8_t chs, int16_t Differ, int16_t DifferSigle)
 {
-    ShieldInfor.trigger_ratio[0] = (DifferSigle * 100 / Differ);              // 按键两次采样比例
-    ShieldInfor.trigger_ratio[1] = ShieldInfor.DusterClothDel * 100 / Differ; // com通道与当前按键differ的比率
+    ShieldInfor.trigger_ratio[0] = (DifferSigle * 100 / Differ);              // Key sampling ratio between two samples
+    ShieldInfor.trigger_ratio[1] = ShieldInfor.DusterClothDel * 100 / Differ; // Ratio of COM channel differ to current key differ
     log_printf("key:%d, r0:%d r1:%d    ", chs, ShieldInfor.trigger_ratio[0], ShieldInfor.trigger_ratio[1]);
     if (ShieldInfor.WaterProof_En == 1)
     {
-        // 泼水按键检测
+        // Water splash key detection
         if (ShieldInfor.WaterProof_Chs == TK_CH_NONE)
         {
             if (ShieldInfor.trigger_ratio[1] >= ShieldInfor.WaterProof_Ratio0)
@@ -466,7 +466,7 @@ static uint8_t APP_TouchWaterFlagsMask(uint8_t chs, int16_t Differ, int16_t Diff
                 return 1;
             }
         }
-        // 有水按键检测
+        // Key detection with water present
         if (ShieldInfor.WaterProof_Mode == 1)
         {
             if (ShieldInfor.trigger_ratio[0] < ShieldInfor.WaterProof_Ratio0)
@@ -489,7 +489,7 @@ static uint8_t APP_TouchWaterFlagsMask(uint8_t chs, int16_t Differ, int16_t Diff
 }
 #endif
 /**
- * @brief TK按键屏蔽，当有按键触发时库函数调用，返回1则不触发按键
+ * @brief TK key mask: called by library when a key triggers; return 1 to suppress the key event
  * @param  None
  * @retval None
  */
@@ -499,7 +499,7 @@ static uint8_t APP_TouchKeyFlagsMask(void)
 }
 #else
 /**
- * @brief  TK用户参数初始化
+ * @brief  TK user parameter initialization
  * @param  None
  * @retval None
  */
@@ -507,7 +507,7 @@ void TK_UserParaInit(void)
 {
 }
 /**
- * @brief  TK寄存器初始化
+ * @brief  TK register initialization
  * @param  None
  * @retval None
  */

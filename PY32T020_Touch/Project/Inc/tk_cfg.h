@@ -111,58 +111,58 @@
 #define CONFIG_LPVREF		0																												
 //  </e>	
 
-//  <h>	��������
-//  <i> ���ô�������
-//  <o>NOISE����ֵ
-//  <i>������ֵ��С
+// Documentation
+// Documentation
+// Documentation
+// Documentation
 //  <0-100>
 #define NOISE_THD_DEFAULT	15								//
-//  <o>���������˲�����
-//  <i>��Χ��1~30������ֵԽ������Խƽ�������ǰ�����Ӧ�ٶ�Խ��
+// Documentation
+// Documentation
 //  <1-30>
 #define FILTERCOUNT			5								//	
-//  <o>���ư�������ʱ��
-//  <i>��λΪms���Ϊ2���ӣ�������Ϊ0����رմ˹���	
+// Documentation
+// Documentation
 //  <0-120000>
 #define KEY_OUT_MAX_TIME					30000
 
 #define KEY_OUT_MAX_TICK_CNT				(KEY_OUT_MAX_TIME / 5)	
-//  <o>����������������ʱ��
-//  <i>��λΪ5ms
+// Documentation
+// Documentation
 //  <0-100>
 #define FINGER_CONFIRM_TICK_CNT					(5) 		
-//  <o>���������ͷ�����ʱ��
-//  <i>��λΪ5ms
+// Documentation
+// Documentation
 //  <0-100>
 #define FINGER_RELEASE_CONFIRM_TICK_CNT			(5)  		
-//  <o>WATER AREA���»���ʱ��
-//  <i>��λΪ5ms
+// Documentation
+// Documentation
 //  <0-1000>
-#define WATER_AREA_CONFIRM_TICK_CNT				(150)		//��λΪ5ms
-//  <o>NOISE AREA���»���ʱ��
-//  <i>��λΪ5ms
+#define WATER_AREA_CONFIRM_TICK_CNT				(150)		// Documentation
+// Documentation
+// Documentation
 //  <0-1000>
-#define NOISE_AREA_CONFIRM_TICK_CNT				(100)		//��λΪ5ms
-//  <o>BOTTON AREA���»���ʱ��
-//  <i>��λΪ5ms
+#define NOISE_AREA_CONFIRM_TICK_CNT				(100)		// Documentation
+// Documentation
+// Documentation
 //  <0-1000>
-#define BOTTON_AREA_CONFIRM_TICK_CNT			(60)		//��λΪ5ms
-//  <o>	��������
-//  <i> ���õ�������
+#define BOTTON_AREA_CONFIRM_TICK_CNT			(60)		// Documentation
+// Documentation
+// Documentation
 //  <0=> DISABLE
 //  <1=> ENABLE
 #define SIGLE_KEY_TRIGGER			0		
-//  <o>	���öఴ��������
-//  <i> ���ఴ��ͬʱ����ʱǿ�Ƹ���BASELINE,����Ϊ0�����ܹر�
+// Documentation
+// Documentation
 //  <0-255>
 #define MAX_TRIGGER_KEY_CNT 		0				
 // </h>
 
-//  <e>	�ڲ��ο�ͨ��
-//  <i> �����ڲ��ο�ͨ��
+// Documentation
+// Documentation
 #define REF_CH_EN				1			
-//  <o> ����ֵ
-//  <i> �����ڲ��ο�ͨ������ֵ
+// Documentation
+// Documentation
 //  <0-2000>
 #define REF_CH_THD				50		
 // </e>

@@ -2,88 +2,89 @@
 #define _APP_DRIVERS_H_
 #include "app_config.h"
 
-extern volatile uint32_t EXTI_Flag;
-/********************************************************
-**	函数名	：app_drivers_init
-**	描述	：用于各底层驱动初始化
-**	传入	：无
-**	返回	：无
-*********************************************************/
+extern volatile uint32_t EXTI_Flag;    // External interrupt event flag (set in EXTI ISR)
+
+/**
+ * @brief  Initialize all peripheral drivers (GPIO, UART, ADC, TIM, etc.)
+ * @param  None
+ * @retval None
+ */
 void app_drivers_init(void);
-/********************************************************
-**	函数名	void app_drivers_loop(void)
-**	描述	：在主函数while(1)中轮询，用于处理各模块的任务
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Main driver polling loop - call inside while(1) to process module tasks
+ * @param  None
+ * @retval None
+ */
 void app_drivers_loop(void);
-/********************************************************
-**	函数名	void app_drivers_timer(void)
-**	描述	：在系统滴答定时器中进行回调，调用周期为1ms
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Driver 1ms timer callback - call from SysTick ISR every 1ms
+ * @param  None
+ * @retval None
+ */
 void app_drivers_timer(void);
-/********************************************************
-**	函数名	void nop_delay_xus(uint16_t nus)
-**	描述	：用于不精准的延时
-**	传入	：nus,需要延时的时间
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Approximate NOP-based delay (not cycle-accurate)
+ * @param  nus : Delay time in microseconds
+ * @retval None
+ */
 void nop_delay_xus(uint16_t nus);
-/********************************************************
-**	函数名	void delay_us(uint16_t nus)
-**	描述	：使用系统滴答定时器延时nus
-**	传入	：nus,需要延时的时间
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Precise microsecond delay using SysTick timer
+ * @param  nus : Delay time in microseconds
+ * @retval None
+ */
 void delay_us(uint16_t nus);
-/********************************************************
-**	函数名	void delay_ms(uint8_t nms)
-**	描述	：使用系统滴答定时器延时nms
-**	传入	：nus,需要延时的时间
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Millisecond delay using SysTick timer
+ * @param  nms : Delay time in milliseconds
+ * @retval None
+ */
 void delay_ms(uint16_t nms);
-/********************************************************
-**	函数名	void UART_TimeOut(void)
-**	描述	UART接收超时定时器，调用频率1ms
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  UART receive timeout handler - call from SysTick ISR every 1ms
+ *         Signals end-of-frame when bus has been idle for more than 5ms
+ * @param  None
+ * @retval None
+ */
 void UART_TimeOut(void);
-/********************************************************
-**	函数名	void UART_Loop(void)
-**	描述	UART任务处理，轮询UART接收队列，当接收空闲超过5ms后表示接收结束，回发收到的数据
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  UART task handler - polls the receive queue and echoes data back
+ *         after 5ms of receive idle time
+ * @param  None
+ * @retval None
+ */
 void UART_Loop(void);
-/********************************************************
-**	函数名	void ADC_Loop(void)
-**	描述	ADC状态机，当adc_state为2时表示序列转换完成，可以直接从ADCxConvertedData[x]中取数据，x为通道号
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  ADC state machine handler - when adc_state == 2 the full sequence is
+ *         complete and ADCxConvertedData[x] holds the result for channel x
+ * @param  None
+ * @retval None
+ */
 void ADC_Loop(void);
-extern uint16_t adc_tick;
-/********************************************************
-**	函数名	void SMG_Show(uint8_t num)
-**	描述	：使用数码管显示10进制数字
-**	传入	：num	需要显示的数
-**	返回	：无
-*********************************************************/
+
+extern uint16_t adc_tick;     // ADC conversion tick counter
+
+/**
+ * @brief  Display a decimal number on the 7-segment display
+ * @param  num : Value to display (decimal)
+ * @retval None
+ */
 void SMG_Show(uint16_t num);
-/********************************************************
-**	函数名	void LED_Show(uint8_t led_bit)
-**	描述	：按键LED指示
-**	传入	：led_bit	需要显示的bit位置，
-                        bit0表示TK0的LED,
-                        bit1表示TK1的LED,
-                        ......
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Update touch key LED indicators based on active key bits
+ * @param  led_bit : Bitmask of keys to light up
+ *                   (bit0 = TK0 LED, bit1 = TK1 LED, ...)
+ * @retval None
+ */
 void LED_Show(uint16_t led_bit);
 
-#endif
-
+#endif  /* _APP_DRIVERS_H_ */

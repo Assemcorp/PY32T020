@@ -1,11 +1,19 @@
 #include "drivers.h"
 #if APP_ADC_ENABLE
-#define TScal1 		(float)((ADC_TSCAL1) * 3300 / Vcc_Power) /* Voltage corresponding to calibration value at 30 ℃ */
-#define TScal2 		(float)((ADC_TSCAL2) * 3300 / Vcc_Power) /* Voltage corresponding to calibration value at 85 ℃ */
-#define TStem1 		30                                           /* 30 ℃ */
-#define TStem2 		85                                           /* 85 ℃ */
+#define TScal1 		(float)((ADC_TSCAL1) * 3300 / Vcc_Power) /**
+ * @brief  Documentation
+ */
+#define TScal2 		(float)((ADC_TSCAL2) * 3300 / Vcc_Power) /**
+ * @brief  Documentation
+ */
+#define TStem1 		30                                           /**
+ * @brief  Documentation
+ */
+#define TStem2 		85                                           /**
+ * @brief  Documentation
+ */
 #define Temp_k 		((float)(TStem2 - TStem1) / (float)(TScal2 - TScal1)) /* Temperature calculation */	
-uint16_t Vcc_Power;      // VCC电压
+uint16_t Vcc_Power;      // VCC voltage
 uint16_t adc_tick;
 int16_t aTEMPERATURE;
 #if LVD_WRITE_USER_DATA
@@ -14,28 +22,28 @@ uint8_t write_otp;
 #define adc_state_bit(n) ((Bits8_TypeDef *)(&(write_otp)))->bit##n
 #define power_on	adc_state_bit(0)
 #define power_off	adc_state_bit(1)
-extern uint8_t Lvd_Flag; // 低电压标志
+extern uint8_t Lvd_Flag; // Low voltage flag
 #endif
-/********************************************************
-**	函数名	void ADC_GPIO_Init(void)
-**	描述	：将GPIO设置为模拟功能
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize ADC GPIOs to Analog mode
+ * @param  None
+ * @retval None
+ */
 void ADC_GPIO_Init(void)
 {
 //	GPIO_Init(PA0, ANALOG);
 }
-/********************************************************
-**	函数名	void ADC_Loop(void)
-**	描述	ADC状态机，当adc_state为2时表示序列转换完成，可以直接从ADCxConvertedData[x]中取数据，x为通道号
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  ADC State Machine. 
+ *         When adc_state == 2, sequence conversion is complete and data can 
+ *         be read directly from ADCxConvertedData[x], where x is the channel number.
+ * @param  None
+ * @retval None
+ */
 void ADC_Loop(void)
 {
 #if LVD_WRITE_USER_DATA
-    /*	低电压标志	*/
+    /* Low voltage flag */
     if (Lvd_Flag)
     {
 		Lvd_Flag = 0;
@@ -51,10 +59,10 @@ void ADC_Loop(void)
         }
     }
 #endif
-    /*	ADC状态监测	*/
+    /* ADC state monitoring */
     switch (adc_state)
     {
-		/*	空闲状态		*/
+		/* Idle state */
 		default:
 		case 0:
 			if (adc_tick >= ADC_SPEED)
@@ -72,27 +80,27 @@ void ADC_Loop(void)
 				}
 			}
         break;
-		/*	转换状态		*/
+		/* Conversion state */
 		case 1:
 			if (adc_tick >= ADC_SPEED)
 			{
 				adc_tick = 0;
-				/*	转换超时，正常不会出现	*/
+				/* Conversion timeout, normally should not happen */
 				/* Disable ADC to clear channel configuration */
 				LL_ADC_REG_StopConversion(ADC1);
 				adc_state = 0;
 			}
         break;
-		/*	转换完成状态		*/
+		/* Conversion complete state */
 		case 2: 
 		{
 //			uint16_t adc_value;
 			adc_state = 0;
-			/*	必须先计算VCC电压，后面的都是以VCC为参考电压计算的	*/
+			/* Must calculate VCC voltage first, subsequent calculations use VCC as reference */
 			Vcc_Power = 1200 * 4095 / ADCxConvertedData[ADC_CHANNEL_VREFINT];
 			aTEMPERATURE = (int16_t)((85 - 30) * (ADCxConvertedData[ADC_CHANNEL_TEMPSENSOR] - TScal1) / (TScal2 - TScal1) + TStem1);
 			#if LVD_WRITE_USER_DATA
-			if (Vcc_Power > (low_voltage + 100)) // 恢复正常供电
+			if (Vcc_Power > (low_voltage + 100)) // Power supply restored to normal
 			{
 				power_on = 1;
 				power_off = 0;
@@ -102,7 +110,7 @@ void ADC_Loop(void)
 //			log_printf("Temperature = %d\r\n", aTEMPERATURE);
 //			adc_value = Vcc_Power / 4095 * ADCxConvertedData[ADC_CHANNEL_8];
 //			log_printf("pb0_value = %d\r\n", adc_value);
-			/*	转换完成后设置特殊采样，参考电压不是VCC的	*/
+			/* After conversion, configure special sampling where reference voltage is not VCC */
 //			adc_value = APP_ADCConvert(ADC_CHANNEL_9, ADC_VREFBUF_1P5V);
 //			log_printf("pb1_value = %d\r\n", adc_value);
 		}

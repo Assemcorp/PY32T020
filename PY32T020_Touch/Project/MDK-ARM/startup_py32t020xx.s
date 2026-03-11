@@ -13,7 +13,7 @@
 ;******************************************************************************
 ;* @attention
 ;*
-;* <h2><center>&copy; Copyright (c) 2023 Puya Semiconductor Co.
+;* Copyright (c) 2023 Puya Semiconductor Co.
 ;* All rights reserved.</center></h2>
 ;*
 ;* This software component is licensed by Puya under BSD 3-Clause license,

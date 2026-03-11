@@ -1,28 +1,26 @@
 #include "adc_drivers.h"
 #if APP_ADC_ENABLE
 const uint8_t ADC_PIN[10] = {PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7, PB0, PB1};
-uint8_t adc_state;       // ADC扫描状态
-uint16_t adc_seq;        // ADC扫描通道
-uint16_t ADCxConvertedData[13]; // 13个通道缓存数据
+uint8_t adc_state;
+uint16_t adc_seq;        // ADC scanning channels mask
+uint16_t ADCxConvertedData[13]; // Cache data for 13 channels
 #if LVD_WRITE_USER_DATA
-uint8_t Lvd_Flag; // 低电压标志
+uint8_t Lvd_Flag; // Low voltage flag
 #endif
-/********************************************************
-**	函数名	void ADC_GPIO_Init(void)
-**	描述	初始化模拟口GPIO
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize Analog GPIOs
+ * @param  None
+ * @retval None
+ */
 __weak void ADC_GPIO_Init(void)
 {
 	
 }
-/********************************************************
-**	函数名	void ADC_Init(void)
-**	描述	：	ADC初始化
-**	传入	：	无
-**	返回	：	无
-*********************************************************/	
+/**
+ * @brief  Initialize ADC
+ * @param  None
+ * @retval None
+ */	
 void ADC_Init(void)
 {
 	uint16_t chs;
@@ -64,7 +62,7 @@ void ADC_Init(void)
 	uint16_t tmpAWDHighThresholdShifted,tmpAWDLowThresholdShifted;
 	#define ADC_AWD1THRESHOLD_SHIFT_RESOLUTION(__HANDLE__, _Threshold_)            \
 					((_Threshold_) << ((((__HANDLE__)->CFGR1 & ADC_CFGR1_RESSEL) >> 3U) * 2))
-    /*	模拟LVD	*/
+    /* Simulate LVD */
 	/*    mode "all channels": ADC_CFGR_AWD1SGL=0).                           */
     ADC1->CFGR1 &= ~(ADC_CFGR1_AWDSGL |ADC_CFGR1_AWDEN  |ADC_CFGR1_AWDCH);
     ADC1->CFGR1 |= ((ADC_CFGR1_AWDSGL | ADC_CFGR1_AWDEN) | (ADC_CHANNEL_VREFINT << 26));
@@ -85,7 +83,7 @@ void ADC_Init(void)
     }
     /* Clear all channels */
     WRITE_REG(ADC1->CHSELR, 0);
-    /* 添加需要采集的通道 */
+    /* Add channels to be sampled */
 	chs = 0;
     for (i = 0; i <= 12; i++)
     {
@@ -115,17 +113,17 @@ void ADC_Init(void)
 	LL_ADC_REG_StartConversion(ADC1);
 	adc_state = 1;
 }
-/********************************************************
-**	函数名	uint16_t APP_ADCConvert(uint16_t channel, uint32_t VrefBuf)
-**	描述	：ADC 单次采集，主要用于参考电压不是VCC的情况
-**	传入	：channel：通道号 	VrefBuf：设置的参考电压
-**	返回	：采样到的12位的ADC数据
-*********************************************************/	
+/**
+ * @brief  ADC single conversion, mainly used when reference voltage is not VCC
+ * @param  channel : ADC channel number
+ * @param  VrefBuf : Reference voltage setting
+ * @retval Sampled 12-bit ADC data
+ */	
 uint16_t APP_ADCConvert(uint16_t channel, uint32_t VrefBuf)
 {
     uint32_t chs = ADC1->CHSELR;
     uint16_t adcvalue;
-    /*	等待序列转换完成*/
+    /* Wait for sequence conversion to complete */
     while (LL_ADC_REG_IsConversionOngoing(ADC1) == 1)
     {
         ;
@@ -172,7 +170,7 @@ void ADC_COMP_IRQHandler(void)
 		/* Clear ADC EOC IT flag */
 		LL_ADC_ClearFlag_EOC(ADC1);
         uint16_t DR = ADC1->DR;
-        /*	按照通道0-通道12依次存放，需要使能通道才会自动采集	*/
+        /* Store sequentially from channel 0 to channel 12, channel must be enabled to be automatically sampled */
         for (uint8_t i = 0; i <= 12; i++)
         {
             if (adc_seq & (1 << i))

@@ -37,29 +37,28 @@ static const IO_Type T020_IO[26] =
 	{GPIOF, LL_GPIO_PIN_5},
 };
 
-/********************************************************
-**	函数名	void GPIO_Init(uint8_t gpio,uint32_t Init)
-**	描述	GPIO初始化
-**	传入	：	gpio：IPA0~PA15,PB0~PB3,PF0~PF5
-				Init：初始化的参数
-	将GPIO设置为模拟模式					->	GPIO_Init(PA0,ANALOG)
-	将GPIO设置为输入上拉模式				->	GPIO_Init(PA0,INPUT|PULL_UP)
-	将GPIO设置为输入上拉下降沿中断模式	->	GPIO_Init(PA0,INPUT|PULL_UP|EXTI_TRIGGER_FALLING)
-	将GPIO设置为推挽输出模式				->	GPIO_Init(PA0,OUTPUT|PUSHPULL)
-	将GPIO设置为开漏输出模式				->	GPIO_Init(PA0,OUTPUT|OPENDRAIN)
-	将GPIO设置为TIM1_CH3输出				->	GPIO_Init(PA0,ALTERNATE | GPIO_TIM1_AF2) 
-												这里选择GPIO_TIM1_AF2或者GPIO_TIM1_AF5需要查看规格书的复用功能映射
-	将GPIO设置为UART功能					->	GPIO_Init(PA0,ALTERNATE | GPIO_UART2) 
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize GPIO
+ * @param  gpio : GPIO pin ID (e.g., PA0~PA15, PB0~PB3, PF0~PF5)
+ * @param  Init : Modes and configurations combined with bitwise OR (|)
+ *                Convert GPIO to analog mode: GPIO_Init(PA0, ANALOG)
+ *                Convert GPIO to input with pull-up: GPIO_Init(PA0, INPUT|PULL_UP)
+ *                Convert GPIO to input with pull-up & falling EXTI: GPIO_Init(PA0, INPUT|PULL_UP|EXTI_TRIGGER_FALLING)
+ *                Convert GPIO to push-pull output: GPIO_Init(PA0, OUTPUT|PUSHPULL)
+ *                Convert GPIO to open-drain output: GPIO_Init(PA0, OUTPUT|OPENDRAIN)
+ *                Convert GPIO to TIM1_CH3 output: GPIO_Init(PA0, ALTERNATE|GPIO_TIM1_AF2)
+ *                                                 (Check datasheet mappings to select AF2 or AF5 properly)
+ *                Convert GPIO to UART function: GPIO_Init(PA0, ALTERNATE|GPIO_UART2)
+ * @retval None
+ */
 static uint32_t exti_bit = 0;
 void GPIO_Init(uint8_t gpio,uint32_t Init)
 {
-	uint32_t Mode      = (Init & 0X000000F);		//方向
-	uint32_t Pull      = (Init & 0X00000F0);		//输入上下拉
-	uint32_t OutputType= (Init & 0X0000F00);		//输出模式
-	uint32_t Alternate = (Init & 0X000F000);		//复用类型模式
-	uint32_t Exti      = (Init & 0X00F0000);		//复用类型模式
+	uint32_t Mode      = (Init & 0X000000F);		// Direction
+	uint32_t Pull      = (Init & 0X00000F0);		// Pull up/down
+	uint32_t OutputType= (Init & 0X0000F00);		// Output mode
+	uint32_t Alternate = (Init & 0X000F000);		// Alternate function mode
+	uint32_t Exti      = (Init & 0X00F0000);		// External interrupt mode
 	if(gpio >= NO_PIN)
 		return;
 	GPIO_TypeDef *GPIOx = GPIO_PORT(gpio);
@@ -67,7 +66,7 @@ void GPIO_Init(uint8_t gpio,uint32_t Init)
 	uint32_t EXTI_CONFIG_LINE = LL_EXTI_LINE_NONE;
 	/* Speed mode configuration */
 	LL_GPIO_SetPinSpeed(GPIOx, PINx, LL_GPIO_SPEED_FREQ_HIGH);
-	/*	清除之前的外部中断使能	*/
+	/* Clear previous EXTI enable */
 	if(exti_bit & (1 << gpio))
 	{
 		exti_bit &= ~(1 << gpio);
@@ -247,48 +246,44 @@ void GPIO_Init(uint8_t gpio,uint32_t Init)
 		break;
 	}
 }
-/********************************************************
-**	函数名	void GPIO_SetBit(uint8_t gpio)
-**	描述	GPIO输出高电平
-**	传入	：	gpio：PA0~PA15,PB0~PB3,PF0~PF5
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Set GPIO pin to high level
+ * @param  gpio : GPIO pin ID
+ * @retval None
+ */
 void GPIO_SetBit(uint8_t gpio)
 {
 	if(gpio >= NO_PIN)
 		return;
 	GPIO_PORT(gpio)->BSRR = GPIO_PIN(gpio);
 }
-/********************************************************
-**	函数名	void GPIO_ClearBit(uint8_t gpio)
-**	描述	GPIO输出低电平
-**	传入	：	gpio：PA0~PA15,PB0~PB3,PF0~PF5
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Set GPIO pin to low level
+ * @param  gpio : GPIO pin ID
+ * @retval None
+ */
 void GPIO_ClearBit(uint8_t gpio)
 {
 	if(gpio >= NO_PIN)
 		return;
 	GPIO_PORT(gpio)->BRR = GPIO_PIN(gpio);
 }
-/********************************************************
-**	函数名	void GPIO_ToggleBit(uint8_t gpio)
-**	描述	GPIO输出翻转
-**	传入	：	gpio：PA0~PA15,PB0~PB3,PF0~PF5
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Toggle GPIO pin state
+ * @param  gpio : GPIO pin ID
+ * @retval None
+ */
 void GPIO_ToggleBit(uint8_t gpio)
 {
 	if(gpio >= NO_PIN)
 		return;
 	WRITE_REG(GPIO_PORT(gpio)->ODR, READ_REG(GPIO_PORT(gpio)->ODR) ^ GPIO_PIN(gpio));
 }
-/********************************************************
-**	函数名	uint8_t GPIO_ReadBit(uint8_t gpio)
-**	描述	读取GPIO状态
-**	传入	：	gpio：PA0~PA15,PB0~PB3,PF0~PF5
-**	返回	：gpio状态
-*********************************************************/
+/**
+ * @brief  Read GPIO pin state
+ * @param  gpio : GPIO pin ID
+ * @retval GPIO state (1 or 0)
+ */
 uint8_t GPIO_ReadBit(uint8_t gpio)
 {
 	if(gpio >= NO_PIN)
@@ -297,12 +292,11 @@ uint8_t GPIO_ReadBit(uint8_t gpio)
 		return 1;
 	return 0;
 }
-/********************************************************
-**	函数名	void EXTI0_1_IRQHandler(void)
-**	描述	外部中断0、1入口
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  EXTI Line 0 and 1 interrupt handler
+ * @param  None
+ * @retval None
+ */
 void EXTI0_1_IRQHandler(void)
 {
 	uint32_t PR = EXTI->PR;
@@ -311,12 +305,11 @@ void EXTI0_1_IRQHandler(void)
 	EXTI0_15_IRQHandlerCallback(PR);
 	__enable_irq();
 }
-/********************************************************
-**	函数名	void EXTI2_3_IRQHandler(void)
-**	描述	外部中断2、3入口
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  EXTI Line 2 and 3 interrupt handler
+ * @param  None
+ * @retval None
+ */
 void EXTI2_3_IRQHandler(void)
 {
 	uint32_t PR = EXTI->PR;
@@ -325,12 +318,11 @@ void EXTI2_3_IRQHandler(void)
 	EXTI0_15_IRQHandlerCallback(PR);
 	__enable_irq();
 }
-/********************************************************
-**	函数名	void EXTI4_15_IRQHandler(void)
-**	描述	外部中断4~15入口
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  EXTI Line 4 to 15 interrupt handler
+ * @param  None
+ * @retval None
+ */
 void EXTI4_15_IRQHandler(void)
 {
 	uint32_t PR = EXTI->PR;
@@ -339,12 +331,11 @@ void EXTI4_15_IRQHandler(void)
 	EXTI0_15_IRQHandlerCallback(PR);
 	__enable_irq();
 }
-/********************************************************
-**	函数名	void EXTI0_15_IRQHandlerCallback(uint32_t PR)
-**	描述	外部中断回调函数
-**	传入	：PR:中断标志
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  EXTI 0 to 15 interrupt callback
+ * @param  PR : Interrupt flag
+ * @retval None
+ */
 __weak void EXTI0_15_IRQHandlerCallback(uint32_t PR)
 {
 

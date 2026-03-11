@@ -5,26 +5,25 @@
 #define		Queue_Size		12
 typedef struct 
 {
-	uint8_t level_In;				//Fifo入口
-	uint8_t level_Out;				//Fifo出口
-	uint8_t level_count;			//高电平计数
-	uint8_t level_fifo[Queue_Size];	//Fifo
+	uint8_t level_In;				// Fifo Input Index
+	uint8_t level_Out;				// Fifo Output Index
+	uint8_t level_count;			// High Level Counter
+	uint8_t level_fifo[Queue_Size];	// Fifo buffer
 }ir_Queue;
 static uint8_t ir_state;
 static ir_Queue ir;  
-static uint8_t ir_Count;		//按键次数
-static uint8_t ir_Rec[4];		//接收BIT缓存
-static uint8_t ir_Cnt;			//接收BIT计数
-static uint16_t ir_release;		//释放计数
+static uint8_t ir_Count;		// Key Press Count
+static uint8_t ir_Rec[4];		// Received Bit Buffer
+static uint8_t ir_Cnt;			// Received Bit Count
+static uint16_t ir_release;		// Release Count
 #define ir_last			ir_state_bit(0)
 #define SYNC			ir_state_bit(1)
 #define RX_OVER			ir_state_bit(2)
-/********************************************************
-**	函数名	void IR_Received_Init(void)
-**	描述	红外扫描解码初始化
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize IR Scanning and Decoding
+ * @param  None
+ * @retval None
+ */
 void IR_Received_Init(void)
 {
 	ir_state = 0;
@@ -32,22 +31,21 @@ void IR_Received_Init(void)
 	ir_Cnt = 0;
 	GPIO_Init(IR_GPIO,INPUT|PULL_UP);
 }
-/********************************************************
-**	函数名	void IR_Received_Scan(void)
-**	描述	红外解码电平扫描函数，放在定时器中断内
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  IR decoding level scan function. To be called in a timer interrupt.
+ * @param  None
+ * @retval None
+ */
 void IR_Received_Scan(void)
 {
-	if(GPIO_ReadBit(IR_GPIO))	  //高电平
+	if(GPIO_ReadBit(IR_GPIO))	  // High Level
 	{
 		ir.level_count++;
-		ir_last = 1;			 //标记高电平已经被捕获
+		ir_last = 1;			 // Mark that high level has been captured
 	}
-	else	  					//低电平
+	else	  					// Low Level
 	{   
-		if(ir_last)				//保存高电平时间
+		if(ir_last)				// Save high level duration
 		{
 			ir.level_fifo[ir.level_In] = ir.level_count;
 			ir.level_In++;
@@ -60,13 +58,12 @@ void IR_Received_Scan(void)
 	if(ir_release)
 		ir_release--;
 }
-/********************************************************
-**	函数名	uint8_t IR_Press(Ir_TypeDef *remote)
-**	描述	红外解码函数
-**	传入	：remote 数据接收结构体
-**	返回	：	0：无信号输入
-				1：收到正确的红外信号
-*********************************************************/
+/**
+ * @brief  IR Decoding Function
+ * @param  remote : Pointer to data receiving structure
+ * @retval 0 : No signal input
+ * @retval 1 : Received correct IR signal
+ */
 uint8_t IR_Press(Ir_TypeDef *remote)
 {
 	uint8_t i;
@@ -77,19 +74,19 @@ uint8_t IR_Press(Ir_TypeDef *remote)
 		ir.level_Out++;
 		if(ir.level_Out >= Queue_Size)
 			ir.level_Out = 0;
-		if(SYNC)//接收到了引导码
+		if(SYNC)// Received Sync Code
 		{
 			i = (ir_Cnt >> 3);
 			if(hight_level >= DATA0_MIN_TIME && hight_level < DATA0_MAX_TIME)			
 			{
-				ir_Rec[i] <<= 1;	//左移一位.
-				ir_Rec[i] &= 0XFE;	//接收到0
+				ir_Rec[i] <<= 1;	// Shift left by 1 bit.
+				ir_Rec[i] &= 0XFE;	// Received 0
 				ir_Cnt++;	
 			}
 			else if(hight_level >= DATA1_MIN_TIME && hight_level < DATA1_MAX_TIME)	
 			{
-				ir_Rec[i] <<= 1;	//左移一位.
-				ir_Rec[i] |= 0X01;	//接收到1
+				ir_Rec[i] <<= 1;	// Shift left by 1 bit.
+				ir_Rec[i] |= 0X01;	// Received 1
 				ir_Cnt++;
 			}
 			else
@@ -97,34 +94,34 @@ uint8_t IR_Press(Ir_TypeDef *remote)
 				SYNC = 0;
 				ir_Cnt = 0; 
 			}
-			/*	地址 16bit 数据 16bit*/
+			/* Address 16-bit, Data 16-bit */
 			if(ir_Cnt == 32)
 			{
 				RX_OVER = 1;
-				SYNC = 0;		//清除接收到了引导码
-				ir_Cnt = 0;		//清除按键次数计数器
+				SYNC = 0;		// Clear sync code received flag
+				ir_Cnt = 0;		// Clear receive bit count
 				ir_Count = 1;
-				ir_release = RELEASE_TIME;		//标记收到数据
+				ir_release = RELEASE_TIME;		// Mark data received
 				break;
 			}
 		}
 		else if(hight_level >= SYNC_MIN_TIME && hight_level < SYNC_MAX_TIME)	
 		{
-			SYNC = 1;		//标记成功接收到了引导码
-			ir_Cnt = 0;		//清除按键次数计数器
+			SYNC = 1;		// Mark sync code successfully received
+			ir_Cnt = 0;		// Clear receive bit count
 			ir_Count = 0;
 			ir_release = 0;
 		}
 		else if(hight_level >= LONG_MIN_TIME && hight_level < LONG_MAX_TIME)	
 		{
-			if(ir_release)						//前面已经收到数据
+			if(ir_release)						// Previous data received
 			{
 				ir_release = RELEASE_TIME;
 				if(ir_Count < 255)
 					ir_Count++;
 				RX_OVER = 1;
-				SYNC = 0;		//清除接收到了引导码
-				ir_Cnt = 0;		//清除按键次数计数器
+				SYNC = 0;		// Clear sync code received flag
+				ir_Cnt = 0;		// Clear receive bit count
 				break;
 			}
 		}
@@ -137,7 +134,7 @@ uint8_t IR_Press(Ir_TypeDef *remote)
 	if(RX_OVER)
 	{
 		RX_OVER = 0;
-		/*	数据校验		*/
+		/* Data Verification */
 		if((ir_Rec[0] == (uint8_t)~ir_Rec[1]) && (ir_Rec[2] == (uint8_t)~ir_Rec[3]))
 		{
 			remote->ir_address = ir_Rec[0];

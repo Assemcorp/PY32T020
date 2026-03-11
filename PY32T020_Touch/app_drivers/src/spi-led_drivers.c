@@ -13,12 +13,11 @@ union {
         uint8_t bit3 : 4;
     } halfbyte;
 } argb_spi;
-/********************************************************
-**	函数名	void SPI_LED_Init(void)
-**	描述	SPI初始化，用于驱动类W2812灯珠
-**	传入	：	无
-**	返回	：	无
-*********************************************************/
+/**
+ * @brief  SPI_LED_Init
+ * @param  None
+ * @retval None
+ */
 void SPI_LED_Init(void)
 {
 	LL_SPI_InitTypeDef SPI_InitStruct = {0};
@@ -46,18 +45,19 @@ void SPI_LED_Init(void)
     }
     SPI_LED_Transmit();
 }
-/********************************************************
-**	函数名	void SPI_LED_RgbLoad(uint8_t offset, uint8_t red, uint8_t green, uint8_t blue)
-**	描述	将RGB数据写入缓存中
-**	传入	：	offset：灯珠偏移量	red:红灯PWM值	green:绿灯PWM值	blue:蓝灯PWM值
-**	返回	：	无
-*********************************************************/
+/**
+ * @brief  SPI_LED_RgbLoad
+ * @param  None
+ * @retval None
+ */
 void SPI_LED_RgbLoad(uint8_t offset, uint8_t red, uint8_t green, uint8_t blue)
 {
     uint16_t n = offset * 6;
     if (offset >= SPI_LED_CNT)
         return;
-    /*	绿色PWM填充	*/
+    /**
+ * @brief  Documentation
+ */
     argb_spi.halfbyte.bit3 = (green & 0x80) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit2 = (green & 0x40) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit1 = (green & 0x20) ? WS2812_1_CODE : WS2812_0_CODE;
@@ -68,7 +68,9 @@ void SPI_LED_RgbLoad(uint8_t offset, uint8_t red, uint8_t green, uint8_t blue)
     argb_spi.halfbyte.bit1 = (green & 0x02) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit0 = (green & 0x01) ? WS2812_1_CODE : WS2812_0_CODE;
     rgb_data[n++] = argb_spi.halfword;
-    /*	红色PWM填充	*/
+    /**
+ * @brief  Documentation
+ */
     argb_spi.halfbyte.bit3 = (red & 0x80) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit2 = (red & 0x40) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit1 = (red & 0x20) ? WS2812_1_CODE : WS2812_0_CODE;
@@ -79,7 +81,9 @@ void SPI_LED_RgbLoad(uint8_t offset, uint8_t red, uint8_t green, uint8_t blue)
     argb_spi.halfbyte.bit1 = (red & 0x02) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit0 = (red & 0x01) ? WS2812_1_CODE : WS2812_0_CODE;
     rgb_data[n++] = argb_spi.halfword;
-    /*	蓝色PWM填充	*/
+    /**
+ * @brief  Documentation
+ */
     argb_spi.halfbyte.bit3 = (blue & 0x80) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit2 = (blue & 0x40) ? WS2812_1_CODE : WS2812_0_CODE;
     argb_spi.halfbyte.bit1 = (blue & 0x20) ? WS2812_1_CODE : WS2812_0_CODE;
@@ -91,12 +95,11 @@ void SPI_LED_RgbLoad(uint8_t offset, uint8_t red, uint8_t green, uint8_t blue)
     argb_spi.halfbyte.bit0 = (blue & 0x01) ? WS2812_1_CODE : WS2812_0_CODE;
     rgb_data[n++] = argb_spi.halfword;
 }
-/********************************************************
-**	函数名	void SPI_LED_Transmit(void)
-**	描述	将缓存数据通过SPI发送
-**	传入	：	无
-**	返回	：	无
-*********************************************************/
+/**
+ * @brief  SPI_LED_Transmit
+ * @param  None
+ * @retval None
+ */
 void SPI_LED_Transmit(void)
 {
 	for(uint16_t i = 0;i < SPI_LED_CNT * 6;i++)

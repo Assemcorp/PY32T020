@@ -30,29 +30,27 @@
 #define ADC_TSCAL1               (*(uint32_t *)(0x1fff0114))  /*!< Temperature Scale1 */
 #define ADC_TSCAL2               (*(uint32_t *)(0x1fff0118))  /*!< Temperature Scale2 */
 
-extern uint8_t adc_state;       // ADC扫描状态
-extern uint16_t adc_seq;        // ADC扫描通道
-extern uint16_t ADCxConvertedData[13]; // 13个通道缓存数据
-/********************************************************
-**	函数名	void ADC_Init(void)
-**	描述	：	ADC初始化
-**	传入	：	无
-**	返回	：	无
-*********************************************************/	
+extern uint8_t adc_state;       // ADC scan state
+extern uint16_t adc_seq;        // ADC scan channel
+extern uint16_t ADCxConvertedData[13]; // ADC buffer for 13 channels
+/**
+ * @brief  ADC initialization
+ * @param  None
+ * @retval None
+ */	
 void ADC_Init(void);
-/********************************************************
-**	函数名	uint16_t APP_ADCConvert(uint16_t channel, uint32_t VrefBuf)
-**	描述	：ADC 单次采集，主要用于参考电压不是VCC的情况
-**	传入	：channel：通道号 	VrefBuf：设置的参考电压
-**	返回	：采样到的12位的ADC数据
-*********************************************************/	
+/**
+ * @brief  ADC single conversion (mainly for non-VCC reference voltage)
+ * @param  channel : ADC channel number
+ * @param  VrefBuf : Reference voltage setting
+ * @retval 12-bit ADC conversion result
+ */	
 uint16_t APP_ADCConvert(uint16_t channel, uint32_t VrefBuf);
-/********************************************************
-**	函数名	void ADC_GPIO_Init(void)
-**	描述	初始化模拟口GPIO
-**	传入	：无
-**	返回	：无
-*********************************************************/
+/**
+ * @brief  Initialize analog GPIO pins
+ * @param  None
+ * @retval None
+ */
 void ADC_GPIO_Init(void);
 #endif
 #endif

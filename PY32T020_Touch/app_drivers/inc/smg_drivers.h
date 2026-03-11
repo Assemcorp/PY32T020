@@ -3,40 +3,41 @@
 
 #include "app_config.h"
 #if APP_SMG_ENABLE
-/********************************************************
-**	函数名	void SMG_Init(void)
-**	描述	数码管IO口初始化，
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Initialize 7-segment display GPIO pins (COM and SEG lines)
+ * @param  None
+ * @retval None
+ */
 void SMG_Init(void);
-/********************************************************
-**	函数名	void SMG_Sleep(void)
-**	描述	数码管休眠，设置IO口状态
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Put 7-segment display into sleep state (set GPIO to low-power configuration)
+ * @param  None
+ * @retval None
+ */
 void SMG_Sleep(void);
-/********************************************************
-**	函数名	void SMG_Wake(void)
-**	描述	数码管退出休眠，继续显示
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Wake 7-segment display from sleep and resume scanning
+ * @param  None
+ * @retval None
+ */
 void SMG_Wake(void);
-/********************************************************
-**	函数名	void SMG_Scan(void)
-**	描述	数码管扫描
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  7-segment display multiplexed scan routine - call from SysTick ISR every 1ms
+ * @param  None
+ * @retval None
+ */
 void SMG_Scan(void);
-/********************************************************
-**	函数名	void SMG_Default(void)
-**	描述	：设置上电默认显示内容
-**	传入	：无
-**	返回	：无
-*********************************************************/
+
+/**
+ * @brief  Set the default power-on display content
+ * @param  None
+ * @retval None
+ */
 void SMG_Default(void);
-#endif
-#endif
+
+#endif  /* APP_SMG_ENABLE */
+#endif  /* _SMG_DRIVERS_H_ */
