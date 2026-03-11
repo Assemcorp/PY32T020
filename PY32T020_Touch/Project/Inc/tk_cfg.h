@@ -111,58 +111,58 @@
 #define CONFIG_LPVREF		0																												
 //  </e>	
 
-// Documentation
-// Documentation
-// Documentation
-// Documentation
+//  <h> Touch Key Parameters
+//  <i> Configure touch key sensing parameters
+//  <o> Noise Threshold
+//  <i> Noise threshold setting
 //  <0-100>
-#define NOISE_THD_DEFAULT	15								//
-// Documentation
-// Documentation
+#define NOISE_THD_DEFAULT	15
+//  <o> Filter Count
+//  <i> Value range 1-30, higher means more stable but slower response
 //  <1-30>
-#define FILTERCOUNT			5								//	
-// Documentation
-// Documentation
+#define FILTERCOUNT			5
+//  <o> Max Long Press Timeout
+//  <i> Unit ms, max 2 minutes, set 0 to disable
 //  <0-120000>
 #define KEY_OUT_MAX_TIME					30000
 
 #define KEY_OUT_MAX_TICK_CNT				(KEY_OUT_MAX_TIME / 5)	
-// Documentation
-// Documentation
+//  <o> Finger Confirm Tick Count
+//  <i> Debounce time for key press (unit: 5ms)
 //  <0-100>
 #define FINGER_CONFIRM_TICK_CNT					(5) 		
-// Documentation
-// Documentation
+//  <o> Finger Release Confirm Tick Count
+//  <i> Debounce time for key release (unit: 5ms)
 //  <0-100>
 #define FINGER_RELEASE_CONFIRM_TICK_CNT			(5)  		
-// Documentation
-// Documentation
+//  <o> Water Area Confirm Tick Count
+//  <i> Unit: 5ms
 //  <0-1000>
-#define WATER_AREA_CONFIRM_TICK_CNT				(150)		// Documentation
-// Documentation
-// Documentation
+#define WATER_AREA_CONFIRM_TICK_CNT				(150)
+//  <o> Noise Area Confirm Tick Count
+//  <i> Unit: 5ms
 //  <0-1000>
-#define NOISE_AREA_CONFIRM_TICK_CNT				(100)		// Documentation
-// Documentation
-// Documentation
+#define NOISE_AREA_CONFIRM_TICK_CNT				(100)
+//  <o> Button Area Confirm Tick Count
+//  <i> Unit: 5ms
 //  <0-1000>
-#define BOTTON_AREA_CONFIRM_TICK_CNT			(60)		// Documentation
-// Documentation
-// Documentation
+#define BOTTON_AREA_CONFIRM_TICK_CNT			(60)
+//  <o> Single Key Trigger
+//  <i> Set to enable single key mode
 //  <0=> DISABLE
 //  <1=> ENABLE
 #define SIGLE_KEY_TRIGGER			0		
-// Documentation
-// Documentation
+//  <o> Multi-Key Trigger Count
+//  <i> Multi-key trigger baseline threshold, 0 to disable
 //  <0-255>
 #define MAX_TRIGGER_KEY_CNT 		0				
 // </h>
 
-// Documentation
-// Documentation
+//  <e> Internal Reference Channel
+//  <i> Enable internal reference channel
 #define REF_CH_EN				1			
-// Documentation
-// Documentation
+//  <o> Threshold
+//  <i> Internal reference channel threshold value
 //  <0-2000>
 #define REF_CH_THD				50		
 // </e>
