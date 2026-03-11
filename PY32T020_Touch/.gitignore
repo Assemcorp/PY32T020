@@ -1,0 +1,35 @@
+# Keil MDK Project files
+*.uvguix.*
+*.uvoptx
+*.uvgui.*
+
+# Build directories
+Project/MDK-ARM/Output/
+Project/MDK-ARM/Listing/
+Project/MDK-ARM/DebugConfig/
+Project/MDK-ARM/RTE/
+Project/MDK-ARM/JLinkLog.txt
+Project/MDK-ARM/JLinkSettings.ini
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary or other unnecessary files
+*.bak
+*.dep
+*.lst
+*.map
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.axf
+
+# Generic Output folder
+Output/
+Listing/
+DebugConfig/
+RTE/
