@@ -2,13 +2,14 @@
 *.uvguix.*
 *.uvoptx
 *.uvgui.*
+*.uvguix
 
 # Build directories
 Project/MDK-ARM/Output/
 Project/MDK-ARM/Listing/
 Project/MDK-ARM/DebugConfig/
 Project/MDK-ARM/RTE/
-Project/MDK-ARM/JLinkLog.txt
+JLinkLog.txt
 Project/MDK-ARM/JLinkSettings.ini
 
 # Python compiled files
